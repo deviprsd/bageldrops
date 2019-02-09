@@ -105,3 +105,8 @@ venv.bak/
 
 # Node JS
 node_modules
+
+# Idea
+.idea
+assets/bundles/
+webpack.stats.frontend.json
