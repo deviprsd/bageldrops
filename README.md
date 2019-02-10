@@ -6,4 +6,7 @@ required packages, clone this repo and run **terminal/cmd** in the folder.
 > npm install
 > cd bageldrops-frontend
 > npm install
+> cd ..
+> pipenv shell
+> python manage.py runserver
 ```
