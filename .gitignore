@@ -109,4 +109,7 @@ node_modules
 # Idea
 .idea
 assets/bundles/
+
+# Auto generated
 webpack.stats.frontend.json
+*.lock
