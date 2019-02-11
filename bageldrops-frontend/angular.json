@@ -61,7 +61,8 @@
         "serve": {
           "builder": "@angular-builders/dev-server:generic",
           "options": {
-            "browserTarget": "bageldrops-frontend:build"
+            "browserTarget": "bageldrops-frontend:build",
+            "publicHost": "127.0.0.1:4200"
           },
           "configurations": {
             "production": {

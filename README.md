@@ -7,7 +7,7 @@ bageldrops> npm install
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> npm install
 bageldrops> cd ..
-(bageldrops) ... bageldrops> pipenv shell
+bageldrops> pipenv shell
 (bageldrops) ... bageldrops> python manage.py runserver
 ```
 In another **terminal/cmd** run
