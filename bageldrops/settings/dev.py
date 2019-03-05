@@ -1,6 +1,6 @@
 from .base import *
 
-STATIC_URL = 'http://localhost:4200/'
+STATIC_URL = '/static/'
 
 WEBPACK_LOADER = {
     'DEFAULT': {

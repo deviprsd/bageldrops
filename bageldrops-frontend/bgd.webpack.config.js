@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: require('path').resolve('../assets/bundles/bageldrops-frontend'),
         filename: "[name]-[hash].js",
-        //publicPath: "http://127.0.0.1:4200/"
+        publicPath: "http://127.0.0.1:4200/"
     },
     devServer: {
         historyApiFallback: true,

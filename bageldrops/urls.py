@@ -15,8 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+
+from coupon import views as coupons
+
+
+router_v1 = routers.DefaultRouter()
+router_v1.register(r'coupons', coupons.CouponViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('api/v1/', include(router_v1.urls)),
+    path('api-auth/', include('rest_framework.urls'))
 ]
