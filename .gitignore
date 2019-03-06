@@ -113,3 +113,5 @@ assets/bundles/
 # Auto generated
 webpack.stats.frontend.json
 *.lock
+*.db
+*/migrations/
