@@ -2,5 +2,11 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 250px;
+}
+
+.header-logo {
+    display: block;
+    width: 100px;
+    height: 50px;
 }
