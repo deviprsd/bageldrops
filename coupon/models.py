@@ -29,7 +29,7 @@ class Coupon(models.Model):
         'discount strategy',
         choices=[(tag.name, tag.value) for tag in DisStrategies],
         default=DisStrategies.DEFA,
-        max_length=10
+        max_length=4
     )
     dis_strategy_split = models.CharField(
         'Spliting strategy for BMDR (2, 5)',
