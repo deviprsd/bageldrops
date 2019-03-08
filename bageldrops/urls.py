@@ -19,10 +19,12 @@ from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 from coupon import views as coupons
+from product import views as products
 
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(r'coupons', coupons.CouponViewSet)
+router_v1.register(r'products', products.ProductViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),
