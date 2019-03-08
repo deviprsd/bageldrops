@@ -1,7 +1,11 @@
 from django.core.validators import validate_comma_separated_integer_list
-from django.db import models
+from core.models import CoreModel, models
 from enum import Enum
 from django.utils import timezone
+
+
+def expiry_date():
+    return timezone.now() + timezone.timedelta(days=15)
 
 
 class DisTypes(Enum):
@@ -15,7 +19,7 @@ class DisStrategies(Enum):
     DEFA = "Apply Discount to Everything"  # apply discount to everything
 
 
-class Coupon(models.Model):
+class Coupon(CoreModel):
     cp_code = models.CharField('coupon code', max_length=15)
     dis_type = models.CharField(
         'discount type',
@@ -39,12 +43,11 @@ class Coupon(models.Model):
         validators=[validate_comma_separated_integer_list]
     )
     limit = models.IntegerField('limit use of coupon code or -1 for unlimited', default=-1)
-    crt_date = models.DateTimeField('created date', default=timezone.now)
-    exp_date = models.DateTimeField('expiring date', default=timezone.now() + timezone.timedelta(days=15))
+    exp_date = models.DateTimeField('expiring date', default=expiry_date)
 
     def __str__(self):
         return "{}".format(self.cp_code)
 
     class Meta:
-        ordering = ('crt_date', 'discount')
+        ordering = ('exp_date','cp_code')
         verbose_name = "coupon"

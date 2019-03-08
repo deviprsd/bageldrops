@@ -1,6 +1,6 @@
-from django.db import models
-from django.utils import timezone
 from enum import Enum
+from core.models import models, CoreModel
+import uuid
 
 
 class ProdCategories(Enum):
@@ -10,10 +10,10 @@ class ProdCategories(Enum):
     MISC = "Misc"
 
 
-class Product(models.Model):
+class Product(CoreModel):
     prod_name = models.CharField('product name', max_length=50)
     price = models.FloatField('price', default=0.00)
-    prod_id = models.CharField('product ID', max_length=5)
+    prod_id = models.CharField('product ID', max_length=36, default=uuid.uuid4)
     prod_category = models.CharField(
         'product category',
         choices=[(x.name, x.value) for x in ProdCategories],
@@ -22,9 +22,10 @@ class Product(models.Model):
     )
     stock = models.IntegerField('number of product in stock', default=1)
     limit = models.IntegerField('max number of product per order')
-    crt_date = models.DateTimeField('created date', default=timezone.now)
-    # modified_date = models.DateTimeField('date last')
 
+    def __str__(self):
+        return "{}".format(self.prod_name)
 
-def __str__(self):
-    return "{}".format(self.prod_name)
+    class Meta:
+        ordering = ('prod_name', 'prod_id')
+        verbose_name = "product"
