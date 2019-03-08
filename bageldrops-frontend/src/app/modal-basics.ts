@@ -4,7 +4,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngbd-modal-basic',
-  templateUrl: './modal-basic.html'
+  templateUrl: './modal-basic.html',
+  styleUrls: ['./app.component.css']
 })
 export class NgbdModalBasic {
   closeResult: string;
