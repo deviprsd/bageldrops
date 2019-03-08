@@ -8,3 +8,4 @@ class ProductAdmin(admin.ModelAdmin):
         'prod_name', 'price', 'prod_id', 'prod_category', 'stock', 'limit',
         'crt_date'
     )
+    readonly_fields = ('crt_date', 'mdf_date')
