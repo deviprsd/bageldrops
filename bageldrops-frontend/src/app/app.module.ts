@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbdModalBasic } from './modal-basics';
 import { FooterComponent } from './footer/footer.component';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 @NgModule({
     declarations: [
@@ -16,9 +19,13 @@ import { FooterComponent } from './footer/footer.component';
     imports: [
         NgbModule,
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        HttpClientModule
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
