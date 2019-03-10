@@ -9,12 +9,18 @@ import { NgbdModalBasic } from './modal-basics';
 import { FooterComponent } from './footer/footer.component';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NgbdModalBasic,
-        FooterComponent
+        FooterComponent,
+        LoginComponent,
+        RegisterComponent,
+        ProductsComponent
     ],
     imports: [
         NgbModule,
