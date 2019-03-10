@@ -21,12 +21,13 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.0",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "ngx-build-plus": "^7.7.5",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "webpack-bundle-tracker": "^0.4.2-beta"
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-builders/dev-server": "^7.3.1",
