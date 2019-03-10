@@ -4,14 +4,12 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
 import { NgbdModalBasic } from './modal-basics';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        DropdownComponent,
         NgbdModalBasic,
         FooterComponent
     ],
