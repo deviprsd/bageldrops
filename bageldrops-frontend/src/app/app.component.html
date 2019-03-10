@@ -27,8 +27,8 @@
                                 <button class="btn btn-outline-primary" id="dropdownBasic1"
                                     ngbDropdownToggle>Profile</button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem>Login</button>
-                                    <button ngbDropdownItem>Sign Up</button>
+                                    <app-login></app-login>
+                                    <app-register></app-register>
                                 </div>
                             </div>
                         </div>
@@ -43,25 +43,23 @@
 <div>
     <img class="logo" alt="Bagel Drops" src="https://i.imgur.com/aTVhaiA.png">
 </div>
-
-<router-outlet>
-    <p>
-        <ngbd-modal-basic>
-        </ngbd-modal-basic>
-    </p>
-    <p>
-        <ngbd-modal-basic>
-        </ngbd-modal-basic>
-    </p>
-    <p>
-        <ngbd-modal-basic>
-        </ngbd-modal-basic>
-    </p>
-    <p>
-        <ngbd-modal-basic>
-        </ngbd-modal-basic>
-    </p>
-</router-outlet>
+<p>
+    <ngbd-modal-basic>
+    </ngbd-modal-basic>
+</p>
+<p>
+    <ngbd-modal-basic>
+    </ngbd-modal-basic>
+</p>
+<p>
+    <ngbd-modal-basic>
+    </ngbd-modal-basic>
+</p>
+<p>
+    <ngbd-modal-basic>
+    </ngbd-modal-basic>
+</p>
+<router-outlet></router-outlet>
 <div>
     <app-footer></app-footer>
 </div>
