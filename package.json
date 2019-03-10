@@ -3,9 +3,7 @@
   "version": "0.0.0.1",
   "description": "CS-341 Shopping E-Commerical Website, Djangular. You need to install [**python 3.7.2**](https://www.python.org/downloads/release/python-372/), \r and [**angular cli**](https://angular.io/guide/quickstart). After installing the required packages, clone this repo and run **terminal/cmd** in the folder. \r ```console\r bageldrops> pipenv install\r bageldrops> npm install\r bageldrops> cd bageldrops-frontend\r bageldrops-frontend> npm install\r bageldrops> cd ..\r bageldrops> pipenv shell\r (bageldrops) ... bageldrops> python manage.py runserver\r ```\r In another **terminal/cmd** run\r ```console\r bageldrops> cd bageldrops-frontend\r bageldrops-frontend> ng serve\r ```",
   "main": " ",
-  "dependencies": {
-    "webpack-bundle-tracker": "^0.4.2-beta"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "repository": {
     "type": "git",

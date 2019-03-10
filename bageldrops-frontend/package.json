@@ -25,7 +25,8 @@
     "ngx-build-plus": "^7.7.5",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "webpack-bundle-tracker": "^0.4.2-beta"
   },
   "devDependencies": {
     "@angular-builders/dev-server": "^7.3.1",

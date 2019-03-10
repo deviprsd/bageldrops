@@ -115,3 +115,6 @@ webpack.stats.frontend.json
 *.lock
 *.db
 */migrations/
+
+.vscode
+.DS_Store
