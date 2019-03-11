@@ -27,9 +27,24 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/css/font-awesome.min.css",
+              "src/assets/css/flaticon.css",
+              "src/assets/css/slicknav.min.css",
+              "src/assets/css/jquery-ui.min.css",
+              "src/assets/css/owl.carousel.min.css",
+              "src/assets/css/animate.css",
+              "src/assets/css/divisima.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/jquery-3.2.1.min.js",
+              "src/assets/js/jquery.slicknav.min.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/jquery.nicescroll.min.js",
+              "src/assets/js/jquery.zoom.min.js",
+              "src/assets/js/jquery-ui.min.js",
+              "src/assets/js/main.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
