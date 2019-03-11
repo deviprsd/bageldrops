@@ -26,7 +26,9 @@
                             <span *ngIf="!authenticationService.currentUserValue">
                                 <a routerLink="/login">Sign In</a> or <a routerLink="/register">Create Account</a>
                             </span>
-                            <a *ngIf="authenticationService.currentUserValue" routerLink="/" (click)="logout()">Logout</a>
+                            <span *ngIf="authenticationService.currentUserValue">
+                                <a routerLink="/accounts/profile">Profile</a> or <a routerLink="/" (click)="logout()">Logout</a>
+                            </span>
                         </div>
                         <div class="up-item">
                             <div class="shopping-card">
