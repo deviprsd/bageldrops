@@ -30,6 +30,7 @@ urlpatterns = [
     path('', include('core.urls')),
     path('admin/', admin.site.urls),
     path('api/v1/', include(router_v1.urls)),
+    path('api-auth/accounts/', include('accounts.urls')),
     path('api-auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api-auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api-auth/token/verify/', TokenVerifyView.as_view(), name='token_refresh'),

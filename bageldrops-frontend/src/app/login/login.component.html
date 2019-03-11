@@ -1,1 +1,13 @@
-<button ngbDropdownItem>{{title}} </button>
+<section class="login-section spad">
+    <div class="login-wrapper m-auto">
+        <div class="container">
+            <h3 class="text-center">Login</h3>
+            <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{ error }}</ngb-alert>
+                <input type="text" id="username" aria-describedby="username" placeholder="Enter username" formControlName="username" required>
+                <input type="password" id="password" aria-describedby="password" placeholder="Enter password" formControlName="password" required>
+                <button type="submit" [disabled]="!loginForm.valid" class="site-btn">Sign Me In!</button>
+            </form>
+        </div>
+    </div>
+</section>
