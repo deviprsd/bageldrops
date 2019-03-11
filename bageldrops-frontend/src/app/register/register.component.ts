@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
    open(content) {
     //this.modalService.open(content, { centered: true });
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true}).result.then((result) => {
-
+      
     }, (reason) => {
 
     });

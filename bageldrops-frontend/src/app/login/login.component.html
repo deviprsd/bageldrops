@@ -16,11 +16,13 @@
                 <label for="pass">Password</label>
                 <input type="password" class="form-control" id="pass" placeholder="Enter password">
             </div>
+
+
+            <div class="modal-footer">
+                <button type="submit" ngbAutofocus class="btn btn-outline-primary" (click)="userLogIn($event)"
+                    (click)="modal.close('Save click')">Submit</button>
+            </div>
         </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" ngbAutofocus class="btn btn-outline-primary"
-            (click)="modal.close('Save click')">Submit</button>
     </div>
 </ng-template>
 
