@@ -1,1 +1,27 @@
-<button ngbDropdownItem>{{title}}</button>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Login</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pass">Password</label>
+                <input type="password" class="form-control" id="pass" placeholder="Enter password">
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ngbAutofocus class="btn btn-outline-primary"
+            (click)="modal.close('Save click')">Submit</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-outline-light" (click)="open(content)">{{title}}</button>
