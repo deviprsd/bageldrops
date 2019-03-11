@@ -1,29 +1,13 @@
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Login</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<section class="login-section spad">
+    <div class="login-wrapper m-auto">
+        <div class="container">
+            <h3 class="text-center">Login</h3>
+            <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{ error }}</ngb-alert>
+                <input type="text" id="username" aria-describedby="username" placeholder="Enter username" formControlName="username" required>
+                <input type="password" id="password" aria-describedby="password" placeholder="Enter password" formControlName="password" required>
+                <button type="submit" [disabled]="!loginForm.valid" class="site-btn">Sign Me In!</button>
+            </form>
+        </div>
     </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" placeholder="Enter password">
-            </div>
-
-
-            <div class="modal-footer">
-                <button type="submit" ngbAutofocus class="btn btn-outline-primary" (click)="userLogIn($event)"
-                    (click)="modal.close('Save click')">Submit</button>
-            </div>
-        </form>
-    </div>
-</ng-template>
-
-<button class="btn btn-outline-light" (click)="open(content)">{{title}}</button>
+</section>

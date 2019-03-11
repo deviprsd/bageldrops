@@ -1,34 +1,26 @@
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Create Your Profile</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                    <input type="email" class="form-control" id="emailConfirm" aria-describedby="emailHelp"
-                        placeholder="Confirm email">
+<section class="register-section spad">
+    <div class="register-wrapper m-auto">
+        <div class="container">
+            <h3 class="text-center">Register</h3>
+            <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <ngb-alert type="danger" *ngIf="error" (close)="error = ''">{{ error }}</ngb-alert>
+                <input type="email" aria-describedby="email" placeholder="Enter email" formControlName="email" required>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" aria-describedby="first name" placeholder="Enter first name"
+                        formControlName="firstName" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="text" aria-describedby="last name" placeholder="Enter last name"
+                        formControlName="lastName" required>
+                    </div>
                 </div>
-            <div class="form-group">
-                <label for="pass">Password</label>
-                <input type="password" class="form-control" id="pass" placeholder="Enter password">
-            </div>
-            <div class="form-group">
-                    <input type="password" class="form-control" id="passConfirm" placeholder="Confirm passowrd">
-                </div>
-        </form>
+                <input type="text" aria-describedby="username" placeholder="Enter username" formControlName="username" required>
+                <input type="password" aria-describedby="password" placeholder="Enter password" formControlName="password" required>
+                <input type="password" aria-describedby="confirm password" placeholder="Enter password again"
+                formControlName="confirmPassword" required>
+                <button type="submit" [disabled]="!registerForm.valid" class="site-btn m-auto">Sign Me Up!</button>
+            </form>
+        </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" ngbAutofocus class="btn btn-outline-primary"
-            (click)="modal.close('Save click')">Submit</button>
-    </div>
-</ng-template>
-
-<button class="btn btn-outline-light" (click)="open(content)">{{title}}</button>
+</section>
