@@ -11,7 +11,6 @@ import { NgbdModalBasic } from './modal-basics';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { HomeComponent } from './home/home.component';
         NgbdModalBasic,
         LoginComponent,
         RegisterComponent,
-        ProductsComponent,
         HomeComponent
     ],
     imports: [
