@@ -13,7 +13,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { AccountsComponent } from './accounts/accounts.component';
+=======
+import { CartComponent } from './cart/cart.component';
+>>>>>>> 6f4621f... Added cart component
 =======
 import { CartComponent } from './cart/cart.component';
 >>>>>>> 6f4621f... Added cart component
@@ -26,7 +30,11 @@ import { CartComponent } from './cart/cart.component';
         RegisterComponent,
         HomeComponent,
 <<<<<<< HEAD
+<<<<<<< HEAD
         AccountsComponent
+=======
+        CartComponent
+>>>>>>> 6f4621f... Added cart component
 =======
         CartComponent
 >>>>>>> 6f4621f... Added cart component
