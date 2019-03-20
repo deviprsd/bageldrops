@@ -12,7 +12,7 @@ export class AppComponent {
         search: new FormControl('')
     });
 
-    constructor(public authenticationService: AuthenticationService) { }
+    constructor(private authenticationService: AuthenticationService) { }
 
     logout() {
         this.authenticationService.logout();
