@@ -12,6 +12,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { HomeComponent } from './home/home.component';
         NgbdModalBasic,
         LoginComponent,
         RegisterComponent,
-        HomeComponent
+        HomeComponent,
+        CartComponent
     ],
     imports: [
         NgbModule,
