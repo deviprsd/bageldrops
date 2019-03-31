@@ -19,4 +19,4 @@ In another **terminal/cmd** run
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> ng serve
 ```
-Then open browser and go to 127.0.0.1:8000
+Then open browser and go to 127.0.0.1:8000 or 127.0.0.1:4200
