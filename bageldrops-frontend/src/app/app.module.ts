@@ -12,15 +12,8 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { AccountsComponent } from './accounts/accounts.component';
-=======
 import { CartComponent } from './cart/cart.component';
->>>>>>> 6f4621f... Added cart component
-=======
-import { CartComponent } from './cart/cart.component';
->>>>>>> 6f4621f... Added cart component
 
 @NgModule({
     declarations: [
@@ -29,15 +22,8 @@ import { CartComponent } from './cart/cart.component';
         LoginComponent,
         RegisterComponent,
         HomeComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-        AccountsComponent
-=======
+        AccountsComponent,
         CartComponent
->>>>>>> 6f4621f... Added cart component
-=======
-        CartComponent
->>>>>>> 6f4621f... Added cart component
     ],
     imports: [
         NgbModule,
