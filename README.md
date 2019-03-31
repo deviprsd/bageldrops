@@ -6,6 +6,7 @@ in the folder. **Note: Make sure to check on ADD Python to PATH while installing
 bageldrops> python -m pip install --upgrade pip
 bageldrops> pip install pipenv
 bageldrops> pipenv install
+bageldrops> pipenv sync
 bageldrops> npm install
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> npm install
