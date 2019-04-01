@@ -22,11 +22,18 @@
                 <div class="col-xl-4 col-lg-5">
                     <div class="user-panel">
                         <div class="up-item">
-                            <i class="flaticon-profile"></i>&nbsp;
                             <span *ngIf="!authenticationService.currentUserValue">
                                 <a routerLink="/login">Sign In</a> or <a routerLink="/register">Create Account</a>
                             </span>
-                            <a *ngIf="authenticationService.currentUserValue" routerLink="/" (click)="logout()">Logout</a>
+                            <ul *ngIf="authenticationService.currentUserValue" class="main-menu profile">
+                                <li>
+                                    <i class="flaticon-profile"></i>&nbsp;<a href="#">{{ authenticationService.fullName }}</a>
+                                    <ul class="sub-menu">
+                                        <li><a routerLink="accounts/profile/">Profile</a></li>
+                                        <li><a routerLink="/" (click)="logout()">Log Out</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                         <div class="up-item">
                             <div class="shopping-card">
@@ -51,6 +58,7 @@
                     <a href="#">Shoes
                         <span class="new">New</span>
                     </a>
+
                 </li>
                 <li><a href="#">Blog</a></li>
             </ul>
