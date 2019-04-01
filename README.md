@@ -6,6 +6,7 @@ in the folder. **Note: Make sure to check on ADD Python to PATH while installing
 bageldrops> python -m pip install --upgrade pip
 bageldrops> pip install pipenv
 bageldrops> pipenv install
+bageldrops> pipenv sync
 bageldrops> npm install
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> npm install
@@ -18,4 +19,4 @@ In another **terminal/cmd** run
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> ng serve
 ```
-Then open browser and go to 127.0.0.1:8000
+Then open browser and go to 127.0.0.1:8000 or 127.0.0.1:4200
