@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
       this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
       this.apiService.get('products').subscribe((products) => {
-        console.log(products);
         this.products = products;
       });
   }
