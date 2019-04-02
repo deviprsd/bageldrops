@@ -6,5 +6,5 @@ export class User {
     password: string;
     access?: string;
     refresh?: string;
-    cartAmmount: string;
+    cartSize: "0";
 }

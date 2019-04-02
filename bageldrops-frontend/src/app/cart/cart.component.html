@@ -1,3 +1,9 @@
-<p>
-  cart works!
-</p>
+<header class="text-center">Your cart</header>
+<div class="column">
+  <div class="col-lg-3 col-sm-6 text-center" *ngFor="let product of cart">
+    <div class="product-item">
+      <h6>{{ product.prod_name }}</h6>
+      <p>${{ product.price }}</p>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@ import { ApiService } from '../_services/api.service';
 })
 export class AccountsComponent implements OnInit {
 
-  constructor(public authenticatedService: AuthenticationService) { 
+  constructor(public authenticationService: AuthenticationService) { 
 
   }
 
