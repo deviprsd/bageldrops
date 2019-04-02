@@ -7,9 +7,9 @@
 				<div class="col-lg-3 col-sm-6" *ngFor="let product of products">
 					<div class="product-item">
 						<div class="pi-pic">
-							<img src="assets/img/product/5.jpg" alt="">
+							<img src="assets/img/product/12.jpg" alt="">
 							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span ng-click="addToCart(product)">ADD TO CART</span></a>
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span (click)="selectForCart(product)">ADD TO CART</span></a>
 								&nbsp;<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
 							</div>
 						</div>

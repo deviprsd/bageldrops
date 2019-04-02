@@ -13,6 +13,9 @@ export class AppComponent {
         search: new FormControl('')
     });
 
+    cartSize: number = 0;
+    cart: any[] = [];
+
     constructor(public authenticationService: AuthenticationService, public apiService: ApiService) { }
 
     logout() {

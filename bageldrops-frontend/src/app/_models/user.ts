@@ -6,5 +6,4 @@ export class User {
     password: string;
     access?: string;
     refresh?: string;
-    cartSize: "0";
 }
