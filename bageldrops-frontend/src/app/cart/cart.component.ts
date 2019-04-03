@@ -28,6 +28,14 @@ export class CartComponent implements OnInit {
     });
   }
 
+  incrememnt(product){
+    
+  }
+
+  decrement(product){
+
+  }
+
   removeFromCart(product) {
     const index = this.cart.indexOf(product, 0);
     if (index > -1) {
