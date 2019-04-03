@@ -3,31 +3,32 @@
   <div class="title">
     Your Cart
   </div>
-<div class="column">
-  <div class="col-lg-3 col-sm-6 text-center" *ngFor="let product of cart">
-    <div class="product-item">
-      
-       
+  <div class="column">
+    <div class="col-lg-3 col-sm-6 text-center" *ngFor="let product of cart">
+      <div class="product-item">
+
+
         <div class="item">
           <button class="delete-btn" type="button" name="button">
-            <img src="assets/img/delete.png" alt="" />
+            <!--<img src="assets/img/delete.png" alt="X"/>-->
+            X
           </button>
-       
-          <div class="image">
-            <img src="assets/img/product/1.jpg" alt="Product Image" />
-          </div>
-       
+
+
+          <img src="assets/img/product/12.jpg" alt="Product Image" />
+
+
           <div class="description">
             <span>{{ product.prod_name }}</span>
             <span>Thats a tasty bagel</span>
           </div>
-       
+
           <div class="quantity">
-            <button class="plus-btn" type="button" name="button" onClick = plusItem()>
+            <button class="plus-btn" type="button" name="button" onClick=plusItem()>
               <img src="assets/img/arrow-up.png" alt="" />
             </button>
             <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button" onClick = minusItem()>
+            <button class="minus-btn" type="button" name="button" onClick=minusItem()>
               <img src="assets/img/arrow-down.png" alt="" />
             </button>
           </div>
@@ -73,7 +74,6 @@
 -->
 
 <div class="total">
-  <span>Subtotal: $00.00</span>
+  <span>Subtotal: ${{ subtotal }}</span>
 </div>
 <button class="checkout-button">Checkout</button>
-
