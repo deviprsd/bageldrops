@@ -26,8 +26,7 @@ export class AuthenticationService {
 
     public get cartSize(): string {
         const user = this.currentUserValue;
-        
-        return `${user.cartAmmount}`;
+        return `${user.cartSize}`;
     }
 
     login(username: string, password: string) {
