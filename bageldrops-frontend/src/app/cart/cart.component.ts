@@ -13,9 +13,11 @@ import { AppComponent } from '../app.component';
 export class CartComponent implements OnInit {
   products: any;
   cart: any[] = [];
+  subtotal: number = 0;
   
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) { 
     this.cart = this.appComponent.cart;
+    this.getSubtotal();
   }
 
   ngOnInit() {
@@ -24,6 +26,13 @@ export class CartComponent implements OnInit {
       //this.cart.push(this.products);
       //console.log(this.cart);
     });
+  }
+
+  public getSubtotal(){
+    var i;
+    for (i = 0; i < this.cart.length; i++) {
+      this.subtotal += this.cart[i].price;
+    }
   }
   
 }
