@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from './_services';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ApiService } from './_services/api.service';
+import { CartService } from './_services/cart.service';
 
 @Component({
     selector: 'app-root',
@@ -13,10 +14,7 @@ export class AppComponent {
         search: new FormControl('')
     });
 
-    cartSize: number = 0;
-    cart: any[] = [];
-
-    constructor(public authenticationService: AuthenticationService, public apiService: ApiService) { }
+    constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) { }
 
     logout() {
         this.authenticationService.logout();

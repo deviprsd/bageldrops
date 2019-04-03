@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { AuthenticationService } from '../_services';
-import { ProductsComponent } from '../products/products.component';
-import { HomeComponent } from '../home/home.component';
-import { AppComponent } from '../app.component';
+import { CartService } from '../_services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,12 +10,11 @@ import { AppComponent } from '../app.component';
 })
 export class CartComponent implements OnInit {
   products: any;
-  cart: any[] = [];
+  cart = {};
   subtotal: number = 0;
 
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) {
-    this.cart = this.appComponent.cart;
-    this.getSubtotal();
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService){
+    this.getCart();
   }
 
   ngOnInit() {
@@ -27,31 +24,7 @@ export class CartComponent implements OnInit {
       //console.log(this.cart);
     });
   }
-
-  incrememnt(product){
-    
+  getCart(){
+    this.cart = this.cartService.cart;
   }
-
-  decrement(product){
-
-  }
-
-  removeFromCart(product) {
-    const index = this.cart.indexOf(product, 0);
-    if (index > -1) {
-      this.cart.splice(index, 1);
-      this.appComponent.cart.splice(index, 1);
-    }
-    this.appComponent.cartSize--;
-    this.getSubtotal();
-  }
-
-  public getSubtotal() {
-    this.subtotal = 0;
-    var i;
-    for (i = 0; i < this.cart.length; i++) {
-      this.subtotal += this.cart[i].price;
-    }
-  }
-
 }

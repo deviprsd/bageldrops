@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { ApiService } from '../_services/api.service';
 import { AppComponent } from '../app.component';
 //import { CartComponent } from '../cart/cart.component';
+import { CartService } from '../_services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   products: any;
   //cart: any[] = [];
   
-  constructor(private titleService: Title, public apiService: ApiService, private appComponent: AppComponent) { }
+  constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { }
 
   ngOnInit() {
       this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
@@ -22,11 +23,6 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  addToCart(product) {
-    //alert(product.prod_name);
-    console.log(product);
-    this.appComponent.cart.push(product);
-    this.appComponent.cartSize++;
-  }
+  
   //export default cart;
 }
