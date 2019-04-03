@@ -9,7 +9,7 @@
 
 
         <div class="item">
-          <button class="delete-btn" type="button" name="button">
+          <button class="delete-btn" type="button" name="button" (click)="removeFromCart(product)">
             <!--<img src="assets/img/delete.png" alt="X"/>-->
             X
           </button>
@@ -24,11 +24,11 @@
           </div>
 
           <div class="quantity">
-            <button class="plus-btn" type="button" name="button" onClick=plusItem()>
+            <button class="plus-btn" type="button" name="button" (click)=increment(product)>
               <img src="assets/img/arrow-up.png" alt="" />
             </button>
             <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button" onClick=minusItem()>
+            <button class="minus-btn" type="button" name="button" (click)=decrement(product)>
               <img src="assets/img/arrow-down.png" alt="" />
             </button>
           </div>

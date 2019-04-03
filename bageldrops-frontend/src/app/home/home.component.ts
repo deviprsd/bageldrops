@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  selectForCart(product) {
-    alert(product.prod_name);
+  addToCart(product) {
+    //alert(product.prod_name);
     console.log(product);
     this.appComponent.cart.push(product);
     this.appComponent.cartSize++;
