@@ -24,10 +24,6 @@ export class AuthenticationService {
         return `${user.firstName} ${user.lastName}`;
     }
 
-    public get cartSize(): string {
-        const user = this.currentUserValue;
-        return `${user.cartSize}`;
-    }
 
     login(username: string, password: string) {
         return this.http.post<any>(`${config.apiAuth}/token/`, { username, password })

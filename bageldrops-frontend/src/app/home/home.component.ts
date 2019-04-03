@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ApiService } from '../_services/api.service';
 import { AppComponent } from '../app.component';
-import { CartComponent } from '../cart/cart.component';
+//import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-home',
