@@ -14,8 +14,8 @@ export class CartComponent implements OnInit {
   products: any;
   cart: any[] = [];
   subtotal: number = 0;
-  
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) { 
+
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) {
     this.cart = this.appComponent.cart;
     this.getSubtotal();
   }
@@ -28,11 +28,22 @@ export class CartComponent implements OnInit {
     });
   }
 
-  public getSubtotal(){
+  removeFromCart(product) {
+    const index = this.cart.indexOf(product, 0);
+    if (index > -1) {
+      this.cart.splice(index, 1);
+      this.appComponent.cart.splice(index, 1);
+    }
+    this.appComponent.cartSize--;
+    this.getSubtotal();
+  }
+
+  public getSubtotal() {
+    this.subtotal = 0;
     var i;
     for (i = 0; i < this.cart.length; i++) {
       this.subtotal += this.cart[i].price;
     }
   }
-  
+
 }
