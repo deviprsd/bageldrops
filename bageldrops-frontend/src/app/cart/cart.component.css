@@ -55,6 +55,10 @@ body {
     margin-top: 20px;
     margin-right: 25px;
   }
+
+  .delete-btn:hover{
+      background-color: #707070;
+  }
    
   .image {
     margin-right: 50px;
@@ -104,6 +108,11 @@ body {
     border: none;
     cursor: pointer;
   }
+
+  button[class*=btn]:hover{
+    background-color: #707070; 
+  }
+
   .minus-btn img {
     margin-bottom: 0px;
   }
@@ -144,6 +153,11 @@ body {
     font-size: 20px;
     border: none;
     cursor: pointer;
+  }
+
+  .checkout-button:hover{
+    font-size: 22px;
+    color: rgb(250, 250, 250);
   }
 
   @media (max-width: 800px) {

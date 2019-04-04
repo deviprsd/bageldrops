@@ -17,7 +17,7 @@ export class CartComponent implements OnInit {
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) {
     this.cart = this.appComponent.cart;
-    this.getSubtotal();
+    //this.getSubtotal();
   }
 
   ngOnInit() {
