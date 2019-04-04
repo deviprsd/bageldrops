@@ -161,6 +161,7 @@ body {
   }
 
   @media (max-width: 800px) {
+ /* @media (max-width: 800px) {
     .shopping-cart {
       width: 100%;
       height: auto;
@@ -184,4 +185,4 @@ body {
     .buttons {
       margin-right: 20px;
     }
-  }
+  }*/

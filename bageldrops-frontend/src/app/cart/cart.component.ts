@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../_services/api.service';
 import { AuthenticationService } from '../_services';
-import { ProductsComponent } from '../products/products.component';
-import { HomeComponent } from '../home/home.component';
-import { AppComponent } from '../app.component';
+import { CartService } from '../_services/cart.service';
+import { Product } from '../_models/product';
 
 @Component({
   selector: 'app-cart',
@@ -11,47 +10,24 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  products: any;
-  cart: any[] = [];
+  product: Product;
+  cart = [];
   subtotal: number = 0;
 
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private appComponent: AppComponent) {
-    this.cart = this.appComponent.cart;
-    //this.getSubtotal();
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService){
+    this.getCart();
+    this.subtotal = this.cartService.subtotal;
   }
 
   ngOnInit() {
     this.apiService.get('products').subscribe((products) => {
-      this.products = products;
-      //this.cart.push(this.products);
-      //console.log(this.cart);
+      this.product = new Product();
+      this.product.prod = products;
     });
-  }
-
-  incrememnt(product){
     
   }
-
-  decrement(product){
-
-  }
-
-  removeFromCart(product) {
-    const index = this.cart.indexOf(product, 0);
-    if (index > -1) {
-      this.cart.splice(index, 1);
-      this.appComponent.cart.splice(index, 1);
-    }
-    this.appComponent.cartSize--;
-    this.getSubtotal();
-  }
-
-  public getSubtotal() {
-    this.subtotal = 0;
-    var i;
-    for (i = 0; i < this.cart.length; i++) {
-      this.subtotal += this.cart[i].price;
-    }
+  getCart(){
+    this.cart = this.cartService.cart;
   }
 
 }
