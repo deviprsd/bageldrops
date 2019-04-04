@@ -2,39 +2,47 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { Product } from '../_models/product';
 
 import { config } from '../_models';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
-    public cart = {}; 
+    public cart = [];
     public subtotal = 0;
     public cartSize = 0;
+    public counter = 0;
 
     constructor() {
         //this.apis = this.http.get<any>(`${config.api}`, {params: new HttpParams().set('format', 'json')}).pipe(map(res => res));
     }
 
-    addToCart(product: any){
+    addToCart(product: any) {
+        var p = new Product();
+        p.prod = product;
+        p.cartID = this.counter;
+        this.cart[this.cartSize] = p;
+        console.log(this.cart[this.counter]);
+        this.counter++;
         this.cartSize++;
-        /*this.cart.Add({
-            product: product,
-            key: this.cartSize
-        });*/
-        this.cart[this.cartSize] = product; 
-        console.log(this.cart[this.cartSize]);
+        this.getSubtotal();
     }
 
-    removeFromCart(product: any){
-
+    removeFromCart(product: Product) {
+        const index = this.cart.indexOf(product, 0);
+        if (index > -1) {
+            this.cart.splice(index, 1);
+        }
+        this.cartSize--;
+        this.getSubtotal();
     }
 
     public getSubtotal() {
         this.subtotal = 0;
         var i;
-        for (i = 0; i < Object.keys(this.cart).length; i++) {
-          this.subtotal += this.cart[i].price;
+        for (i = 0; i < this.cart.length; i++) {
+            this.subtotal += this.cart[i].prod.price;
         }
-      }
+    }
 
 }

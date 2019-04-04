@@ -4,6 +4,7 @@ import { ApiService } from '../_services/api.service';
 import { AppComponent } from '../app.component';
 //import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../_services/cart.service';
+import { Product } from '../_models/product';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { CartService } from '../_services/cart.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  products: any;
+  products: Product;
   //cart: any[] = [];
   
   constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { }

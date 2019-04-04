@@ -8,7 +8,7 @@
 
 
         <div class="item">
-          <button class="delete-btn" type="button" name="button" (click)="cartService.removeFromCart(product)">
+          <button class="delete-btn" type="button" name="button" (click)="cartService.removeFromCart(product)" (click)="cartService.getSubtotal()">
             <!--<img src="assets/img/delete.png" alt="X"/>-->
             X
           </button>
@@ -18,7 +18,7 @@
 
 
           <div class="description">
-            <span>{{ cartService.product.prod_name }}</span>
+            <span>{{ product.prod_name }}</span>
             <span>Thats a tasty bagel</span>
           </div>
 
@@ -31,7 +31,7 @@
               <img src="assets/img/arrow-down.png" alt="" />
             </button>
           </div>
-          <div class="item-price">${{ cartService.product.price }}</div>
+          <div class="item-price">${{ product.price }}</div>
         </div>
       </div>
     </div>
@@ -40,6 +40,6 @@
 
 
 <div class="total">
-  <span>Subtotal: ${{ subtotal }}</span>
+  <span>Subtotal: ${{ cartService.subtotal }}</span>
 </div>
 <button class="checkout-button">Checkout</button>
