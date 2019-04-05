@@ -25,11 +25,11 @@
 
 
           <div class="quantity">
-            <button class="plus-btn" type="button" name="button" (click)=increment(product)>
+            <button class="plus-btn" type="button" name="button" (click)=cartService.increment(product)>
               <img src="assets/img/arrow-up.png" alt="" />
             </button>
-            <input type="text" name="name" value="1">
-            <button class="minus-btn" type="button" name="button" (click)=decrement(product)>
+            <div>{{ product.ammount }}</div>
+            <button class="minus-btn" type="button" name="button" (click)=cartService.decrement(product)>
               <img src="assets/img/arrow-down.png" alt="" />
             </button>
           </div>

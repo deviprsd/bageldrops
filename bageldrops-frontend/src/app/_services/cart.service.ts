@@ -21,11 +21,26 @@ export class CartService {
         var p = new Product();
         p.prod = product;
         p.cartID = this.counter;
+        p.ammount++;
         this.cart[this.cartSize] = p;
         console.log(this.cart[this.counter]);
         this.counter++;
         this.cartSize++;
         this.getSubtotal();
+    }
+
+    increment(product: Product) {
+        product.ammount++;
+        this.getSubtotal();
+    }
+
+    decrement(product: Product) {
+        product.ammount--;
+        if (product.ammount < 1) {
+            this.removeFromCart(product);
+        } else {
+            this.getSubtotal();
+        }
     }
 
     removeFromCart(product: Product) {
@@ -41,7 +56,7 @@ export class CartService {
         this.subtotal = 0;
         var i;
         for (i = 0; i < this.cart.length; i++) {
-            this.subtotal += this.cart[i].prod.price;
+            this.subtotal += (this.cart[i].prod.price * this.cart[i].ammount);
         }
     }
 
