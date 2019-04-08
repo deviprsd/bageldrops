@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { CartComponent } from './cart/cart.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { AccountsComponent } from './accounts/accounts.component';
         RegisterComponent,
         HomeComponent,
         AccountsComponent,
-        CartComponent
+        CartComponent,
+        CheckoutComponent
     ],
     imports: [
         NgbModule,
