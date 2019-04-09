@@ -1,4 +1,20 @@
-<form id="form-box" method="get">
+<section class="checkout-section spad">
+  <div class="checkout-wrapper m-auto">
+    <div class="container">
+      <h3 class="text-center">Checkout</h3>
+      <form class="checkout-form">
+        <input *ngIf="!authenticationService.currentUserValue" type="text" id="first-name" placeholder="First Name" required>
+        <input *ngIf="!authenticationService.currentUserValue" type="text" id="last-name" placeholder="Last Name" required>
+        <input type="text" id="address-1" placeholder="Address Line 1" required>
+        <input type="text" id="address-2" placeholder="Address Line 2">
+        <input type="text" id="state" placeholder="State" required>
+        <input type="text" id="zip" placeholder="ZIP" required>
+        <button type="submit" class="site-btn">Next</button>
+      </form>
+    </div>
+  </div>
+</section>
+<!--<form id="form-box" method="get">
   <div id="form-title">Shipping Address</div>
 
   <span *ngIf="!authenticationService.currentUserValue">
@@ -28,3 +44,4 @@
 
   <input class="btn" type="submit" name="next" value="NEXT" />
 </form>
+-->
