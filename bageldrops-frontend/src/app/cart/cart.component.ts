@@ -12,11 +12,11 @@ import { Product } from '../_models/product';
 export class CartComponent implements OnInit {
   product: Product;
   cart = [];
-  subtotal: number = 0;
+  //subtotal: number = 0;
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService){
     this.getCart();
-    this.subtotal = this.cartService.subtotal;
+    //this.subtotal = this.cartService.subtotal;
   }
 
   ngOnInit() {

@@ -10,7 +10,7 @@ import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructi
 @Injectable({ providedIn: 'root' })
 export class CartService {
     public cart = [];
-    public subtotal = 0;
+    //public subtotal = 0;
     public counter = 0;
 
     constructor() {
@@ -37,12 +37,12 @@ export class CartService {
 
         //console.log(this.cart[this.counter]);
 
-        this.getSubtotal();
+        //this.getSubtotal();
     }
 
     increment(product: Product) {
         product.ammount++;
-        this.getSubtotal();
+        //this.getSubtotal();
     }
 
     decrement(product: Product) {
@@ -50,7 +50,7 @@ export class CartService {
             // do nothing
         } else {
             product.ammount--;
-            this.getSubtotal();
+            //this.getSubtotal();
         }
     }
 
@@ -59,19 +59,25 @@ export class CartService {
         if (index > -1) {
             this.cart.splice(index, 1);
         }
-        this.getSubtotal();
+        //this.getSubtotal();
     }
 
-    public getSubtotal() {
-        this.subtotal = 0;
+    public subtotal() {
+        var subtotal = 0;
         //var i;
-        for (let i = 0; i < this.cart.length; i++) {
-            this.subtotal += (this.cart[i].prod.price * this.cart[i].ammount);
+        for (let i in this.cart) {
+            subtotal += (this.cart[i].prod.price * this.cart[i].ammount);
         }
+        //this.subtotal = (Math.floor(this.subtotal * 100) / 100);
+        return subtotal.toFixed(2);
     }
 
     get cartSize() {
-        return this.cart.length;
+        var cartSize = 0;
+        for (let i in this.cart){
+            cartSize += this.cart[i].ammount;
+        }
+        return cartSize;
     }
 
 }

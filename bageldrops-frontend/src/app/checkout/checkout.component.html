@@ -1,3 +1,30 @@
-<h1>
-  YOure mome
-</h1>
+<form id="form-box" method="get">
+  <div id="form-title">Shipping Address</div>
+
+  <span *ngIf="!authenticationService.currentUserValue">
+    <div class="form-header">First Name</div>
+    <input class="form-input" id="first-name" required/>
+
+    <div class="form-header">Last Name</div>
+    <input class="form-input" id="last-name" required/>
+  </span>
+
+  <div class="form-header">Address Line 1</div>
+  <input
+    type="text"
+    class="form-input"
+    id="addrs_1"
+    required
+  />
+
+  <div class="form-header">Address Line 2</div>
+  <input type="text" class="form-input" id="addrs_2" />
+
+  <div class="form-header">State</div>
+  <input class="form-input" id="state" required/>
+
+  <div class="form-header">Postcode</div>
+  <input class="form-input" id="postcode" required/>
+
+  <input class="btn" type="submit" name="next" value="NEXT" />
+</form>
