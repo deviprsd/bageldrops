@@ -1,10 +1,11 @@
 #form-box {
+    float: center;
     height: content;
     padding: 2em 3.5em;
-    border-top: 50px solid #e8e8e8;
+    /*border-top: 50px solid #e8e8e8;
     border-left: 2px solid #e8e8e8;
     border-right: 2px solid #e8e8e8;
-    border-bottom: 2px solid #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;*/
   }
   
   #form-title {

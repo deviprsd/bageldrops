@@ -1,30 +1,25 @@
 <form id="form-box" method="get">
   <div id="form-title">Shipping Address</div>
 
-  <span *ngIf="!authenticationService.currentUserValue">
-    <div class="form-header">First Name</div>
-    <input class="form-input" id="first-name" required/>
+  <!--<span *ngIf="!authenticationService.currentUserValue">-->
+  <div *ngIf="!authenticationService.currentUserValue" class="form-header">First Name</div>
+  <input *ngIf="!authenticationService.currentUserValue" class="form-input" id="first-name" required />
 
-    <div class="form-header">Last Name</div>
-    <input class="form-input" id="last-name" required/>
-  </span>
+  <div *ngIf="!authenticationService.currentUserValue" class="form-header">Last Name</div>
+  <input *ngIf="!authenticationService.currentUserValue" class="form-input" id="last-name" required />
+  <!--</span>-->
 
   <div class="form-header">Address Line 1</div>
-  <input
-    type="text"
-    class="form-input"
-    id="addrs_1"
-    required
-  />
+  <input type="text" class="form-input" id="addrs_1" required />
 
   <div class="form-header">Address Line 2</div>
   <input type="text" class="form-input" id="addrs_2" />
 
   <div class="form-header">State</div>
-  <input class="form-input" id="state" required/>
+  <input class="form-input" id="state" required />
 
-  <div class="form-header">Postcode</div>
-  <input class="form-input" id="postcode" required/>
+  <div class="form-header">ZIP</div>
+  <input class="form-input" id="postcode" required />
 
   <input class="btn" type="submit" name="next" value="NEXT" />
 </form>
