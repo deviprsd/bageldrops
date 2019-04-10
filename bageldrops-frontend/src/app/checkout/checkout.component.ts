@@ -13,40 +13,35 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
 
   checkoutForm = new FormGroup({
-      firstName: new FormControl('', [Validators.required]),
-      lastName: new FormControl('', [Validators.required]),
-      addr1: new FormControl('', [Validators.required]),
-      addr2: new FormControl(''),
-      state: new FormControl('', [Validators.required]),
-      zip : new FormControl('', [Validators.required])
-    });
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    addr1: new FormControl('', [Validators.required]),
+    addr2: new FormControl(''),
+    state: new FormControl('', [Validators.required]),
+    zip: new FormControl('', [Validators.required])
+  });
   //returnUrl: string;
   submitted = false;
-  error: string;
+  //error: string;
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) { }
 
   ngOnInit() {
-   // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
 
-        if (this.authenticationService.currentUserValue) {
-            this.checkoutForm.setValue({
-              firstName: `${this.authenticationService.currentUserValue.firstName}`, 
-              lastName: `${this.authenticationService.currentUserValue.lastName}`,
-              addr1: '',
-              addr2: '',
-              state: '',
-              zip: ''
+    if (this.authenticationService.currentUserValue) {
+      this.checkoutForm.setValue({
+        firstName: `${this.authenticationService.currentUserValue.firstName}`,
+        lastName: `${this.authenticationService.currentUserValue.lastName}`,
+      });
+      console.log(this.checkoutForm);
+    }
 
-            });
-            console.log(this.checkoutForm);
-        }
-
-        //this.titleService.setTitle('BagelDrops | Log In');
+    //this.titleService.setTitle('BagelDrops | Log In');
   }
 
-  onSubmit(){
-    
+  onSubmit() {
+    console.log(this.checkoutForm.value);
   }
 
 }

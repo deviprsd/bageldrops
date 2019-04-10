@@ -2,13 +2,16 @@
   <div class="checkout-wrapper m-auto">
     <div class="container">
       <h3 class="text-center">Checkout</h3>
-      <form class="checkout-form">
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="firstName" aria-describedby="first-name" placeholder="First Name" required>
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="lastName" aria-describedby="last-name" placeholder="Last Name" required>
-        <input type="text" id="address-1" aria-describedby="addr1" placeholder="Address Line 1" required>
-        <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2">
-        <input type="text" id="state" aria-describedby="state" placeholder="State" required>
-        <input type="text" id="zip" aria-describedby="zip" placeholder="ZIP" required>
+      <form class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <input *ngIf="!authenticationService.currentUserValue" type="text" id="firstName" aria-describedby="first-name"
+          placeholder="First Name" formControlName="firstName" required>
+        <input *ngIf="!authenticationService.currentUserValue" type="text" id="lastName" aria-describedby="last-name"
+          placeholder="Last Name" formControlName="lastName" required>
+        <input type="text" id="address-1" aria-describedby="addr1" placeholder="Address Line 1" formControlName="addr1"
+          required>
+        <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2" formControlName="addr2">
+        <input type="text" id="state" aria-describedby="state" placeholder="State" formControlName="state" required>
+        <input type="text" id="zip" aria-describedby="zip" placeholder="ZIP" formControlName="zip" required>
         <button type="submit" [disabled]="!checkoutForm.valid" class="site-btn">Next</button>
       </form>
     </div>

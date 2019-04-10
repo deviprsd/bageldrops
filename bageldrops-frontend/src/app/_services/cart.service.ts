@@ -12,6 +12,7 @@ export class CartService {
     public cart = [];
     //public subtotal = 0;
     public counter = 0;
+    public discount = 0;
 
     constructor() {
         //this.apis = this.http.get<any>(`${config.api}`, {params: new HttpParams().set('format', 'json')}).pipe(map(res => res));
@@ -69,6 +70,7 @@ export class CartService {
             subtotal += (this.cart[i].prod.price * this.cart[i].ammount);
         }
         //this.subtotal = (Math.floor(this.subtotal * 100) / 100);
+        subtotal = subtotal * (1 - this.discount);
         return subtotal.toFixed(2);
     }
 
