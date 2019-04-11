@@ -16,9 +16,6 @@
     border-top:  1px solid #E1E8EE;
     border-bottom:  1px solid #E1E8EE;
   }
-
-  .buttons {
-  }
   
   .delete-btn {
     margin-top: 50%;
@@ -32,10 +29,6 @@
     height: 50%;
   }
 
-  .description {
-    
-  }
-   
   .description span {
     margin-top: 50%;
     display: block;
@@ -79,13 +72,6 @@
     background-color: #707070; 
   }
 
-  .minus-btn img {
-    /* margin-bottom: 0px; */
-  }
-  .plus-btn img {
-    /* margin-top: 0px; */
-  }
-   
   button:focus,
   input:focus {
     outline:0;
