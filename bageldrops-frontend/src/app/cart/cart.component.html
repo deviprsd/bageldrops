@@ -79,4 +79,6 @@
 <div class="total">
   <span>Subtotal: ${{ cartService.subtotal() }}</span>
 </div>
-<button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
+<!--<span *ngIf="this.cartService.cartSize()">-->
+  <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
+<!--</span>-->
