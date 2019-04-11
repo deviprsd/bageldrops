@@ -11,7 +11,9 @@
           required>
         <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2" formControlName="addr2">
         <input type="text" id="state" aria-describedby="state" placeholder="State" formControlName="state" required>
-        <input type="text" id="zip" aria-describedby="zip" placeholder="ZIP" formControlName="zip" required>
+        <input type="text" id="cardNum" aria-describedby="cardNum" placeholder="Card Number" formControlName="cardNum" required>
+        <input type="date" id="expiration" aria-describedby="expiration" formControlName="expiration" required>
+        <input type="text" id="ccv" aria-describedby="ccv" placeholder="CCV" formControlName="ccv" required>
         <ng-template #content let-modal>
           <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Confirm Order</h4>

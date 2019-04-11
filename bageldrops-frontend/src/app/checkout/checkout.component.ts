@@ -19,7 +19,11 @@ export class CheckoutComponent implements OnInit {
     addr1: new FormControl('', [Validators.required]),
     addr2: new FormControl(''),
     state: new FormControl('', [Validators.required]),
-    zip: new FormControl('', [Validators.required])
+    zip: new FormControl('', [Validators.required]),
+    cardNum: new FormControl('', [Validators.required]),
+    exipration: new FormControl('', [Validators.required]),
+    ccv: new FormControl('', [Validators.required])
+
   });
   //returnUrl: string;
   submitted = false;
