@@ -3,10 +3,10 @@
     <div class="container">
       <h3 class="text-center">Checkout</h3>
       <form class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="firstName" aria-describedby="first-name"
-          placeholder="First Name" formControlName="firstName" required>
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="lastName" aria-describedby="last-name"
-          placeholder="Last Name" formControlName="lastName" required>
+        <input type="text" id="firstName" aria-describedby="first-name" placeholder="First Name"
+          formControlName="firstName" required>
+        <input type="text" id="lastName" aria-describedby="last-name" placeholder="Last Name" formControlName="lastName"
+          required>
         <input type="text" id="address-1" aria-describedby="addr1" placeholder="Address Line 1" formControlName="addr1"
           required>
         <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2" formControlName="addr2">
