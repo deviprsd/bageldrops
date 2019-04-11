@@ -3,7 +3,8 @@ import { AuthenticationService } from '../_services/authentication.service';
 import { ApiService } from '../_services/api.service';
 import { CartService } from '../_services/cart.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-//import { first } from 'rxjs/operators';
+import { NgbdModalBasic } from '../modal-basics';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-checkout',
@@ -23,8 +24,9 @@ export class CheckoutComponent implements OnInit {
   //returnUrl: string;
   submitted = false;
   //error: string;
+  closeResult: string;
 
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) { }
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService, private modalService: NgbModal) { }
 
   ngOnInit() {
     // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -42,6 +44,25 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log(this.checkoutForm.value);
+  }
+
+  open(content) {
+    console.log(content);
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
 }

@@ -74,12 +74,20 @@ export class CartService {
         return subtotal.toFixed(2);
     }
 
-    get cartSize() {
+    public get cartSize() {
         var cartSize = 0;
         for (let i in this.cart){
             cartSize += this.cart[i].ammount;
         }
         return cartSize;
+    }
+
+    public tax() {
+        return (parseFloat(this.subtotal()) * 0.05).toFixed(2);
+    }
+
+    public total() {
+        return ((parseFloat(this.tax()) + parseFloat(this.subtotal())).toFixed(2));
     }
 
 }

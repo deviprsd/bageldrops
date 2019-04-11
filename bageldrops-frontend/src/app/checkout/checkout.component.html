@@ -3,43 +3,64 @@
     <div class="container">
       <h3 class="text-center">Checkout</h3>
       <form class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="firstName" aria-describedby="first-name"
-          placeholder="First Name" formControlName="firstName" required>
-        <input *ngIf="!authenticationService.currentUserValue" type="text" id="lastName" aria-describedby="last-name"
-          placeholder="Last Name" formControlName="lastName" required>
+        <input type="text" id="firstName" aria-describedby="first-name" placeholder="First Name"
+          formControlName="firstName" required>
+        <input type="text" id="lastName" aria-describedby="last-name" placeholder="Last Name" formControlName="lastName"
+          required>
         <input type="text" id="address-1" aria-describedby="addr1" placeholder="Address Line 1" formControlName="addr1"
           required>
         <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2" formControlName="addr2">
         <input type="text" id="state" aria-describedby="state" placeholder="State" formControlName="state" required>
         <input type="text" id="zip" aria-describedby="zip" placeholder="ZIP" formControlName="zip" required>
-        <button type="submit" [disabled]="!checkoutForm.valid" class="site-btn">Next</button>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Confirm Order</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <li>
+              <span>Subtotal: ${{ cartService.subtotal() }}</span>
+            </li>
+            <li>
+              <span>Tax: ${{ cartService.tax() }}</span>
+            </li>
+            <li>
+              <span>Total: ${{ cartService.total() }}</span>
+            </li>
+          </div>
+          <div class="modal-footer">
+            <button type="button" ngbAutofocus class="btn btn-outline-dark"
+              (click)="modal.close('Confirm click')">Complete Order</button>
+              <button type="button" ngbAutofocus class="btn btn-outline-dark"
+              (click)="modal.close('Cancel click')">Cancel</button>
+          </div>
+        </ng-template>
+        <button type="submit" (click)="open(content)" [disabled]="!checkoutForm.valid" class="site-btn">Confirm</button>
       </form>
     </div>
   </div>
 </section>
-<!--<form id="form-box" method="get">
-  <div id="form-title">Shipping Address</div>
-
-  <span *ngIf="!authenticationService.currentUserValue">
-  <div *ngIf="!authenticationService.currentUserValue" class="form-header">First Name</div>
-  <input *ngIf="!authenticationService.currentUserValue" class="form-input" id="first-name" required />
-
-  <div *ngIf="!authenticationService.currentUserValue" class="form-header">Last Name</div>
-  <input *ngIf="!authenticationService.currentUserValue" class="form-input" id="last-name" required />
-  </span>
-
-  <div class="form-header">Address Line 1</div>
-  <input type="text" class="form-input" id="addrs_1" required />
-
-  <div class="form-header">Address Line 2</div>
-  <input type="text" class="form-input" id="addrs_2" />
-
-  <div class="form-header">State</div>
-  <input class="form-input" id="state" required />
-
-  <div class="form-header">ZIP</div>
-  <input class="form-input" id="postcode" required />
-
-  <input class="btn" type="submit" name="next" value="NEXT" />
-</form>
--->
+<!--<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Confirm Order</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="product-photo" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Plain-Bagel.jpg">
+  </div>
+  <p class="product-discription">
+    A very nice bagel
+  </p>
+  <div class="modal-footer">
+    <button type="button" ngbAutofocus class="btn btn-outline-dark" (click)="modal.close('Save click')">Done</button>
+  </div>
+</ng-template>
+<div class="text-center">
+  <button class="btn btn-lg center-block" (click)="open(content)">
+    <img class="product-preview" src="https://upload.wikimedia.org/wikipedia/commons/8/88/Plain-Bagel.jpg">
+  </button>
+</div>-->
