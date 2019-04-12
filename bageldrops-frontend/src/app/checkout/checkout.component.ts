@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
     state: new FormControl('', [Validators.required]),
     zip: new FormControl('', [Validators.required]),
     cardNum: new FormControl('', [Validators.required]),
-    exipration: new FormControl('', [Validators.required]),
+    expiration: new FormControl('', [Validators.required]),
     ccv: new FormControl('', [Validators.required])
 
   });
