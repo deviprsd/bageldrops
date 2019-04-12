@@ -125,6 +125,7 @@
     background-color: rgb(240, 90, 40);
     border-radius: 25px;
     font-size: 20px;
+    color: white;
     border: none;
     cursor: pointer;
   }

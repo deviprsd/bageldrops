@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
     state: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
     zip: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
     cardNum: new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
-    expiration: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+    expiration: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
     ccv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3)])
 
   });
@@ -33,17 +33,7 @@ export class CheckoutComponent implements OnInit {
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    // this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
-
-    if (this.authenticationService.currentUserValue) {
-      this.checkoutForm.setValue({
-        firstName: `${this.authenticationService.currentUserValue.firstName}`,
-        lastName: `${this.authenticationService.currentUserValue.lastName}`,
-      });
-      console.log(this.checkoutForm);
-    }
-
-    //this.titleService.setTitle('BagelDrops | Log In');
+    
   }
 
   onSubmit() {

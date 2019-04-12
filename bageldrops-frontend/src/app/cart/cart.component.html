@@ -139,11 +139,17 @@
     </div>
   </div>
 </span>
-<div class="col" *ngIf="cartService.cart.length==0">
-  <p></p>
-  <h3 class="goBack">Your Cart is Empty</h3>
-  <h5 class="goBack">Click bellow to go back to our storepage to fill up your cart!</h5>
-  <p></p>
-  <button class="m-auto home-button"><span routerLink='/'>Home</span></button>
-  <p></p>
-</div>
+<section class="cart-section spad">
+  <div class="cart-wrapper m-auto">
+    <div class="container">
+      <div class="col" *ngIf="cartService.cart.length==0">
+        <p></p>
+        <h1 class="goBack">Your Cart is Empty</h1>
+        <h5 class="goBack">Click bellow to go back to our storepage to fill up your cart!</h5>
+        <p></p>
+        <button class="m-auto home-button"><span routerLink='/'>Home</span></button>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</section>
