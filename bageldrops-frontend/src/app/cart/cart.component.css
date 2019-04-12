@@ -22,11 +22,12 @@
   }
 
   .delete-btn:hover{
-      background-color: #707070;
+    background-color: #707070;
   }
    
   .image {
-    height: 50%;
+    /* height: 50%; */
+    max-height: 120px;
   }
 
   .description span {
@@ -58,7 +59,16 @@
     font-weight: 300;
   }
    
-  button[class*=btn] {
+  /* button[class*=btn] {
+    width: 30px;
+    height: 30px;
+    background-color: #8d8d8d;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  } */
+
+  .delete-btn{
     width: 30px;
     height: 30px;
     background-color: #8d8d8d;
@@ -66,7 +76,24 @@
     border: none;
     cursor: pointer;
   }
-  
+
+  .plus-btn{
+    width: 30px;
+    height: 30px;
+    background-color: #8d8d8d;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .minus-btn{
+    width: 30px;
+    height: 30px;
+    background-color: #8d8d8d;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
 
   button[class*=btn]:hover{
     background-color: #707070; 
@@ -85,7 +112,14 @@
   .total{
     color: #43484D;
   }
+
+  .subtotal span{
+    margin-left: 7px;
+    font-size: 20px;
+  }
+
   .checkout-button{
+    margin-top: 10px;
     margin-bottom: 20px;
     padding: 5px 15px;
     background-color: rgb(240, 90, 40);
@@ -93,6 +127,7 @@
     font-size: 20px;
     border: none;
     cursor: pointer;
+    width: 167px;
   }
 
   .checkout-button:hover{
@@ -104,11 +139,25 @@
     justify-content: center;
   }
 
-  .coupon-form{
-    width: 80%;
+  .coupon-form input{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: 167px;
+    height: 44px;
+    border: none;
+    padding: 0 18px;
+    background: #f0f0f0;
+    border-radius: 40px;
+    font-size: 12px;
   }
 
   .site-btn{
-    font-size: 60%;
+    font-size: 80%;
     padding: 7px 20px;
+    border-radius: 20px;
+    width: 115px;
+    height: 40px;
+    margin-bottom: 10px;
+    background-color: #8d8d8d;
   }
+
