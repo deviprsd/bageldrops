@@ -1,8 +1,8 @@
 <section class="checkout-section spad">
   <div class="checkout-wrapper m-auto">
     <div class="container">
-      <h3 class="text-center">Checkout</h3>
-      <form class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <h3 *ngIf="!cartService.isCompleted()" class="text-center">Checkout</h3>
+      <form *ngIf="!cartService.isCompleted()" class="checkout-form" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
         <input type="text" id="firstName" aria-describedby="first-name" placeholder="First Name"
           formControlName="firstName" required>
         <input type="text" id="lastName" aria-describedby="last-name" placeholder="Last Name" formControlName="lastName"
@@ -11,37 +11,43 @@
           required>
         <input type="text" id="address-2" aria-describedby="addr2" placeholder="Address Line 2" formControlName="addr2">
         <input type="text" id="state" aria-describedby="state" placeholder="State" formControlName="state" required>
+        <input type="text" id="zip" aria-describedby="zip" placeholder="ZIP" formControlName="zip" required>
         <input type="text" id="cardNum" aria-describedby="cardNum" placeholder="Card Number" formControlName="cardNum"
           required>
-        <input type="month" id="expiration" aria-describedby="expiration" placeholder="MM/YY" formControlName="expiration" required>
+        <input type="month" id="expiration" aria-describedby="expiration" placeholder="MM/YY"
+          formControlName="expiration" required>
         <input type="text" id="ccv" aria-describedby="ccv" placeholder="CCV" formControlName="ccv" required>
         <ng-template #content let-modal>
-          <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title">Confirm Order</h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <li>
-              <span>Subtotal: ${{ cartService.subtotal() }}</span>
-            </li>
-            <li>
-              <span>Tax: ${{ cartService.tax() }}</span>
-            </li>
-            <li>
-              <span>Total: ${{ cartService.total() }}</span>
-            </li>
-          </div>
-          <div class="modal-footer">
-            <button type="button" ngbAutofocus class="btn btn-outline-dark"
-              (click)="modal.close('Confirm click')">Complete Order</button>
-            <button type="button" ngbAutofocus class="btn btn-outline-dark"
-              (click)="modal.close('Cancel click')">Cancel</button>
-          </div>
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Confirm Order</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <li>
+                <span>Subtotal: ${{ cartService.subtotal() }}</span>
+              </li>
+              <li>
+                <span>Tax: ${{ cartService.tax() }}</span>
+              </li>
+              <li>
+                <span>Total: ${{ cartService.total() }}</span>
+              </li>
+            </div>
+            <div class="modal-footer">
+              <button type="button" ngbAutofocus class="btn btn-outline-dark"
+                (click)="modal.close('Confirm click')">Complete Order</button>
+              <button type="button" ngbAutofocus class="btn btn-outline-dark"
+                (click)="modal.close('Cancel click')">Cancel</button>
+            </div>
         </ng-template>
         <button type="submit" (click)="open(content)" [disabled]="!checkoutForm.valid" class="site-btn">Confirm</button>
       </form>
+      <span *ngIf="cartService.isCompleted()">
+        <h1 id="thanks">Thank You!</h1>
+        <h6 id="confirm">Your order has been sucessfully confirmed</h6>
+      </span>
     </div>
   </div>
 </section>

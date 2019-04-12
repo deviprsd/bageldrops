@@ -13,6 +13,7 @@ export class CartService {
     //public subtotal = 0;
     public counter = 0;
     public discount = 0;
+    public completed = false;
 
     constructor() {
         //this.apis = this.http.get<any>(`${config.api}`, {params: new HttpParams().set('format', 'json')}).pipe(map(res => res));
@@ -76,7 +77,7 @@ export class CartService {
 
     public get cartSize() {
         var cartSize = 0;
-        for (let i in this.cart){
+        for (let i in this.cart) {
             cartSize += this.cart[i].ammount;
         }
         return cartSize;
@@ -88,6 +89,17 @@ export class CartService {
 
     public total() {
         return ((parseFloat(this.tax()) + parseFloat(this.subtotal())).toFixed(2));
+    }
+
+    public isCompleted() {
+        return this.completed;
+    }
+
+    public clearCart() {
+        this.cart = [];
+        this.counter = 0;
+        this.discount = 0;
+        //this.completed = false;
     }
 
 }

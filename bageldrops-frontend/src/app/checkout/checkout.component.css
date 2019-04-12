@@ -26,3 +26,11 @@
   background: #8d8d8d;
   cursor: not-allowed;
 }
+
+#confirm {
+  text-align: center;
+}
+
+#thanks {
+  text-align: center;
+}

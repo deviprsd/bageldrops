@@ -54,6 +54,11 @@ export class CheckoutComponent implements OnInit {
     console.log(content);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      if (`${result}` == 'Confirm click') { //Order is completed
+        this.cartService.completed = true;
+        this.cartService.clearCart();
+      }
+
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });

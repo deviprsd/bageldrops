@@ -15,7 +15,9 @@ export class HomeComponent implements OnInit {
   products: Product;
   //cart: any[] = [];
   
-  constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { }
+  constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { 
+    this.cartService.completed = false;
+  }
 
   ngOnInit() {
       this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
