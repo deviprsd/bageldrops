@@ -18,11 +18,11 @@ export class CheckoutComponent implements OnInit {
     lastName: new FormControl('', [Validators.required]),
     addr1: new FormControl('', [Validators.required]),
     addr2: new FormControl(''),
-    state: new FormControl('', [Validators.required]),
-    zip: new FormControl('', [Validators.required]),
-    cardNum: new FormControl('', [Validators.required]),
-    expiration: new FormControl('', [Validators.required]),
-    ccv: new FormControl('', [Validators.required])
+    state: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
+    zip: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+    cardNum: new FormControl('', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]),
+    expiration: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(4)]),
+    ccv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3)])
 
   });
   //returnUrl: string;

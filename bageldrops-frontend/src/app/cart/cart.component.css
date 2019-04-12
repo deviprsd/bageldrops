@@ -112,3 +112,19 @@
     font-size: 60%;
     padding: 7px 20px;
   }
+
+  .goBack{
+    text-align: center;
+  }
+
+  .home-button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 5px 15px;
+    background-color: rgb(240, 90, 40);
+    border-radius: 25px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+  }

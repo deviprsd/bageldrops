@@ -2,45 +2,47 @@
   <div class="row">
     <div class="col-3"></div>
     <div class="col">
-        <div class="title">
-            Your Cart
-          </div>
+      <div *ngIf="cartService.cart.length!=0" class="title">
+        Your Cart
+      </div>
     </div>
   </div>
-      <div class="product-item" *ngFor="let product of cart">
-        <div class="item">
+  <div class="product-item" *ngFor="let product of cart">
+    <div class="item">
 
-          <div class="row">
-            <div class="col-3"></div>
-            <div class="col-1">
-                <button class="delete-btn" type="button" name="button" (click)="cartService.removeFromCart(product)"
-                (click)="cartService.subtotal()">
-                X
-              </button>
-            </div>
-            <div class="col-1" >
-                <img class="image" src="assets/img/product/1.jpg" alt="Product Image">
-            </div>
-            <div class="col-1">
-                <p>Bageldrops{{ product.prod.prod_name }}
-                    Thats a tasty bagel</p>
-            </div>
-            <div class="col-1">
-                <div class="quantity">
-                    <button class="plus-btn" type="button" name="button" (click)=cartService.increment(product)>
-                      <img src="assets/img/arrow-up.png" alt="" />
-                    </button>
-                    <div>{{ product.ammount }}</div>
-                    <button class="minus-btn" type="button" name="button" (click)=cartService.decrement(product)>
-                      <img src="assets/img/arrow-down.png" alt="" />
-                    </button>
-                  </div>
-            </div>
-            <div class="col-1"><div class="item-price">${{ product.prod.price }}</div></div>
-            <div class="col-3"></div>
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-1">
+          <button class="delete-btn" type="button" name="button" (click)="cartService.removeFromCart(product)"
+            (click)="cartService.subtotal()">
+            X
+          </button>
+        </div>
+        <div class="col-1">
+          <img class="image" src="assets/img/product/1.jpg" alt="Product Image">
+        </div>
+        <div class="col-1">
+          <p>Bageldrops{{ product.prod.prod_name }}
+            Thats a tasty bagel</p>
+        </div>
+        <div class="col-1">
+          <div class="quantity">
+            <button class="plus-btn" type="button" name="button" (click)=cartService.increment(product)>
+              <img src="assets/img/arrow-up.png" alt="" />
+            </button>
+            <div>{{ product.ammount }}</div>
+            <button class="minus-btn" type="button" name="button" (click)=cartService.decrement(product)>
+              <img src="assets/img/arrow-down.png" alt="" />
+            </button>
           </div>
         </div>
+        <div class="col-1">
+          <div class="item-price">${{ product.prod.price }}</div>
+        </div>
+        <div class="col-3"></div>
       </div>
+    </div>
+  </div>
 </div>
 
 <!-- 
@@ -114,25 +116,34 @@
 <!-- <div class="total">
   <span>Subtotal: ${{ cartService.subtotal() }}</span>
 </div> -->
-
-<div class="row">
+<span *ngIf="cartService.cart.length!=0">
+  <div class="row">
     <div class="col-7"></div>
     <div class="col-2">
       <form class="coupon-form" [formGroup]="couponForm" (ngSubmit)="onSubmit()">
-         <input type="text" aria-describedby="coupon" placeholder="Enter coupon" formControlName="coupon">
-         <button type="submit" class="site-btn">Add Coupon</button>
-       </form>
+        <input type="text" aria-describedby="coupon" placeholder="Enter coupon" formControlName="coupon">
+        <button type="submit" class="site-btn">Add Coupon</button>
+      </form>
     </div>
-</div>
-<div class="row">
+  </div>
+  <div class="row">
     <div class="col-7"></div>
     <div class="col-2">
-        <span>Subtotal: ${{ cartService.subtotal() }}</span>
+      <span>Subtotal: ${{ cartService.subtotal() }}</span>
     </div>
-</div>
-<div class="row">
-  <div class="col-7"></div>
-  <div class="col-2">
-    <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
   </div>
+  <div class="row">
+    <div class="col-7"></div>
+    <div class="col-2">
+      <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
+    </div>
+  </div>
+</span>
+<div class="col" *ngIf="cartService.cart.length==0">
+  <p></p>
+  <h3 class="goBack">Your Cart is Empty</h3>
+  <h5 class="goBack">Click bellow to go back to our storepage to fill up your cart!</h5>
+  <p></p>
+  <button class="m-auto home-button"><span routerLink='/'>Home</span></button>
+  <p></p>
 </div>
