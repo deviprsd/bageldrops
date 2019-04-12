@@ -118,7 +118,7 @@
 </div> -->
 <span *ngIf="cartService.cart.length!=0">
   <div class="row">
-    <div class="col-7"></div>
+    <div class="col-lg-7 col-sm-5"></div>
     <div class="col-2">
       <form class="coupon-form" [formGroup]="couponForm" (ngSubmit)="onSubmit()">
         <input type="text" aria-describedby="coupon" placeholder="Enter coupon" formControlName="coupon">
@@ -145,6 +145,7 @@
       <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
     </div>
   </div>
+  </div> 
 </span>
 <section class="cart-section spad">
   <div class="cart-wrapper m-auto">
