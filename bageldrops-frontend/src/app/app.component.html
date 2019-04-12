@@ -27,7 +27,8 @@
                             </span>
                             <ul *ngIf="authenticationService.currentUserValue" class="main-menu profile">
                                 <li>
-                                    <i class="flaticon-profile"></i>&nbsp;<a href="#">{{ authenticationService.fullName }}</a>
+                                    <i class="flaticon-profile"></i>&nbsp;<a
+                                        href="#">{{ authenticationService.fullName }}</a>
                                     <ul class="sub-menu">
                                         <li><a routerLink="accounts/profile/">Profile</a></li>
                                         <li><a routerLink="/" (click)="logout()">Log Out</a></li>
@@ -51,15 +52,7 @@
             <!-- menu -->
             <ul class="main-menu">
                 <li><a routerLink="/">Home</a></li>
-                <li><a href="#">Women</a></li>
-                <li><a href="#">Men</a></li>
-                <li>
-                    <a href="#">Shoes
-                        <span class="new">New</span>
-                    </a>
-
-                </li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="https://github.com/deviprsd">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -129,7 +122,7 @@
                     </div>
                     <div class="con-info">
                         <span>B.</span>
-                        <p>1481 Creekside Lane  Avila Beach, CA 93424, P.O. BOX 68 </p>
+                        <p>1481 Creekside Lane Avila Beach, CA 93424, P.O. BOX 68 </p>
                     </div>
                     <div class="con-info">
                         <span>T.</span>
@@ -156,10 +149,12 @@
             </div>
 
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            <p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+            <p class="text-white text-center mt-5">Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+                with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                    target="_blank">Colorlib</a></p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 
         </div>
     </div>
 </section>
-
