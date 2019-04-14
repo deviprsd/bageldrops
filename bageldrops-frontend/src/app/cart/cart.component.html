@@ -1,3 +1,17 @@
+<section class="cart-section spad" *ngIf="cartService.cart.length==0">
+  <div class="cart-wrapper m-auto">
+    <div class="container">
+      <div class="col" >
+        <p></p>
+        <h1 class="goBack">Your Cart is Empty</h1>
+        <h5 class="goBack">Click bellow to go back to our storepage to fill up your cart!</h5>
+        <p></p>
+        <button class="m-auto home-button"><span routerLink='/'>Home</span></button>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</section>
 <div class="shopping-cart">
   <div class="row">
     <div class="col-3"></div>
@@ -139,25 +153,4 @@
   <div class="col-2">
     <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
   </div>
-  <div class="row">
-    <div class="col-7"></div>
-    <div class="col-2">
-      <button class="checkout-button"><span routerLink='/checkout'>Checkout</span></button>
-    </div>
-  </div>
-  </div> 
-</span>
-<section class="cart-section spad">
-  <div class="cart-wrapper m-auto">
-    <div class="container">
-      <div class="col" *ngIf="cartService.cart.length==0">
-        <p></p>
-        <h1 class="goBack">Your Cart is Empty</h1>
-        <h5 class="goBack">Click bellow to go back to our storepage to fill up your cart!</h5>
-        <p></p>
-        <button class="m-auto home-button"><span routerLink='/'>Home</span></button>
-        <p></p>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
