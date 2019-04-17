@@ -20,7 +20,7 @@ class Cart(CoreModel):
         Billing,
         on_delete=models.CASCADE,
         primary_key=True,
-        null=True,
+        default=None,
     )
     products = models.ForeignKey(
         Product,
