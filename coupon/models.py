@@ -49,5 +49,5 @@ class Coupon(CoreModel):
         return "{}".format(self.cp_code)
 
     class Meta:
-        ordering = ('exp_date','cp_code')
+        ordering = ('exp_date', 'cp_code')
         verbose_name = "coupon"

@@ -21,11 +21,14 @@ from core.views import UserTokenObtainPairView
 
 from coupon import views as coupons
 from product import views as products
-
+from billing import views as billings
+from cart import views as carts
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(r'coupons', coupons.CouponViewSet)
 router_v1.register(r'products', products.ProductViewSet)
+router_v1.register(r'billings', billings.BillingViewSet)
+router_v1.register(r'carts', carts.CartViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),

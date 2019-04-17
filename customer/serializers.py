@@ -6,7 +6,6 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = (
-            'password', 'name', 'delivery_address', 'billing_address',
-            'card_number', 'card_exp_date', 'sec_code'
+            'customer_id', 'email', 'password', 'name', 'billing_info', 'carts'
         )
         read_only_fields = 'email'
