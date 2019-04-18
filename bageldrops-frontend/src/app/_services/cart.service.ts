@@ -68,10 +68,10 @@ export class CartService {
         var subtotal = 0;
         //var i;
         for (let i in this.cart) {
-            subtotal += (this.cart[i].prod.price * this.cart[i].ammount);
+            subtotal += (this.cart[i].prod.price * this.cart[i].ammount) * (1 - this.discount);
         }
         //this.subtotal = (Math.floor(this.subtotal * 100) / 100);
-        subtotal = subtotal * (1 - this.discount);
+        //subtotal = subtotal * (1 - this.discount);
         return subtotal.toFixed(2);
     }
 
