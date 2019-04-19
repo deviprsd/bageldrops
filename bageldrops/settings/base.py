@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'admin_reorder',
     'rest_framework',
     'webpack_loader',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
 
 ROOT_URLCONF = 'bageldrops.urls'
@@ -145,4 +147,17 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:4200',
     'localhost:4200',
     '127.0.0.1:8000'
+)
+
+ADMIN_REORDER = (
+    {'app': 'auth', 'models': (
+        'auth.Group',
+        {'model': 'auth.User', 'label': 'Staff'},
+    ), 'label': 'Admin Operations'},
+    {'app': 'cart', 'models': (
+        'customer.Customer', 'product.Product', 'collection.Collection'
+    ), 'label': 'BagelDrop\'s Store'},
+    {'app': 'cart', 'models': (
+        'cart.Cart', 'billing.Billing', 'coupon.Coupon'
+    ), 'label': 'Checkout'},
 )
