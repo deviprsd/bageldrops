@@ -109,6 +109,7 @@ node_modules
 # Idea
 .idea
 assets/bundles/
+assets/media/
 
 # Auto generated
 webpack.stats.frontend.json
