@@ -14,6 +14,7 @@ django-webpack-loader = "==0.6.0"
 jsonfield = "*"
 markdown = "==3.0.1"
 djangorestframework-simplejwt = "*"
+django-modeladmin-reorder = "*"
 
 [requires]
 python_version = "3.7"
