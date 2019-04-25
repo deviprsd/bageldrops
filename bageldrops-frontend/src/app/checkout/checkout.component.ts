@@ -13,7 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CheckoutComponent implements OnInit {
 
-  checkoutForm = new FormGroup({
+  checkoutForm = new FormGroup({ //Retrieving checkout form input
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     addr1: new FormControl('', [Validators.required]),
@@ -40,7 +40,7 @@ export class CheckoutComponent implements OnInit {
     console.log(this.checkoutForm.value);
   }
 
-  open(content) {
+  open(content) { //Opening modal for checkout completion
     console.log(content);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  private getDismissReason(reason: any): string {
+  private getDismissReason(reason: any): string { //Seeing if checkout was actually completed or if the modal window was simply closed
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {

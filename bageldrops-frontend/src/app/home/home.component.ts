@@ -13,8 +13,7 @@ import { Product } from '../_models/product';
 })
 export class HomeComponent implements OnInit {
   products: Product;
-  //cart: any[] = [];
-  
+    
   constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { 
     this.cartService.completed = false;
   }
@@ -25,7 +24,4 @@ export class HomeComponent implements OnInit {
         this.products = products;
       });
   }
-
-  
-  //export default cart;
 }

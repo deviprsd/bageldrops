@@ -8,7 +8,7 @@ import { AuthGuard } from './_guards/auth.gaurd';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 
-const routes: Routes = [
+const routes: Routes = [ //Routes to different components
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},

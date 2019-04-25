@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-    loginForm = new FormGroup({
+    loginForm = new FormGroup({ //Retrieving login info
         username: new FormControl('', [Validators.required, Validators.minLength(4)]),
         password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         return this.loginForm.controls;
     }
 
-    onSubmit() {
+    onSubmit() { //Validating login
         this.submitted = true;
 
         if (!this.loginForm.valid) {

@@ -14,17 +14,15 @@ export class CartComponent implements OnInit {
   product: Product;
   coupons: Array<any>;
   cart = [];
-  //subtotal: number = 0;
   couponForm = new FormGroup({
     coupon: new FormControl('')
   });
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) {
     this.getCart();
-    //this.subtotal = this.cartService.subtotal;
   }
 
-  ngOnInit() {
+  ngOnInit() { //Loading products and cart
     this.apiService.get('products').subscribe((products) => {
       this.product = new Product();
       this.product.prod = products;
@@ -52,7 +50,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  couponsMatch(apiCoupons: Array<any>, coupon: string) {
+  couponsMatch(apiCoupons: Array<any>, coupon: string) { //Coupon validation
     for (let i in apiCoupons) {
       if (apiCoupons[i].cp_code == coupon.toUpperCase()) {
         return apiCoupons[i];

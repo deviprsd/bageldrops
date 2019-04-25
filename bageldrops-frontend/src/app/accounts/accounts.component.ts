@@ -13,6 +13,8 @@ export class AccountsComponent implements OnInit {
 
   }
 
+  //User must be able to edit their profile
+  //Just going to be able to edit their name
   ngOnInit() {
   }
 
