@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'product.apps.ProductConfig',
     'customer.apps.CustomerConfig',
     'cart.apps.CartConfig',
+    'address.apps.AddressConfig',
     'billing.apps.BillingConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -158,6 +159,6 @@ ADMIN_REORDER = (
         'customer.Customer', 'product.Product', 'collection.Collection'
     ), 'label': 'BagelDrop\'s Store'},
     {'app': 'cart', 'models': (
-        'cart.Cart', 'billing.Billing', 'coupon.Coupon'
+        'cart.Cart', 'billing.Billing', 'coupon.Coupon', 'address.Address'
     ), 'label': 'Checkout'},
 )

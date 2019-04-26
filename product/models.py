@@ -17,7 +17,7 @@ class Product(CoreModel):
     prod_category = models.CharField(
         'product category',
         choices=[(x.name, x.value) for x in ProdCategories],
-        default=ProdCategories.MISC,
+        default=ProdCategories.MISC.name,
         max_length=11
     )
     stock = models.IntegerField('number of product in stock', default=1)

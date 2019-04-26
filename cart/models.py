@@ -13,7 +13,7 @@ class Cart(CoreModel):
     cart_state = models.CharField(
         'Cart State',
         choices=[(x.name, x.value) for x in CartState],
-        default=CartState.IN_PROGRESS,
+        default=CartState.IN_PROGRESS.name,
         max_length=11
     )
     cart_billing = models.OneToOneField(

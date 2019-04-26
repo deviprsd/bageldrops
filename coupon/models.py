@@ -24,7 +24,7 @@ class Coupon(CoreModel):
     dis_type = models.CharField(
         'discount type',
         choices=[(tag.name, tag.value) for tag in DisTypes],
-        default=DisTypes.PERCENT,
+        default=DisTypes.PERCENT.name,
         max_length=7
     )
     discount = models.SmallIntegerField('discount', default=5)
@@ -32,7 +32,7 @@ class Coupon(CoreModel):
     dis_strategy = models.CharField(
         'discount strategy',
         choices=[(tag.name, tag.value) for tag in DisStrategies],
-        default=DisStrategies.DEFA,
+        default=DisStrategies.DEFA.name,
         max_length=4
     )
     dis_strategy_split = models.CharField(
