@@ -1,5 +1,6 @@
 from django.core.validators import validate_comma_separated_integer_list
 from core.models import CoreModel, models
+from collection.models import Collection
 from enum import Enum
 from django.utils import timezone
 
@@ -43,10 +44,11 @@ class Coupon(CoreModel):
         validators=[validate_comma_separated_integer_list]
     )
     limit = models.IntegerField('limit use of coupon code or -1 for unlimited', default=-1)
+    collection = models.OneToOneField(Collection, on_delete=models.SET_NULL, null=True)
     exp_date = models.DateTimeField('expiring date', default=expiry_date)
 
     def __str__(self):
-        return "{}".format(self.cp_code)
+        return f'{self.cp_code}'
 
     class Meta:
         ordering = ('exp_date', 'cp_code')

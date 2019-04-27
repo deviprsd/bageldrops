@@ -256,19 +256,20 @@ class CountryTypes(Enum):
 
 class Address(CoreModel):
     street_one = models.CharField('Street', max_length=100, null=False, blank=False)
-    street_two = models.CharField('Street', max_length=100)
+    street_two = models.CharField('Street', max_length=100, null=True, blank=True)
     city = models.CharField('City', max_length=100, null=False, blank=False)
     state = models.CharField('State', max_length=100, null=False, blank=False)
-    zip = models.IntegerField('Zip Code', null=False, blank=False)
+    zip = models.CharField('Zip Code', max_length=6, null=False, blank=False)
     country = models.CharField(
         'Country',
         choices=[(tag.name, tag.value) for tag in CountryTypes],
         default=CountryTypes.US.name,
-        max_length=8
+        max_length=8,
+        editable=False
     )
 
     def __str__(self):
-        return "{}".format(self.street_one)
+        return f'{self.street_one}'
 
     class Meta:
         ordering = ['mdf_date']

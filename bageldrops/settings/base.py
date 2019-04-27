@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'coupon.apps.CouponConfig',
+    'collection.apps.CollectionConfig',
     'product.apps.ProductConfig',
     'customer.apps.CustomerConfig',
     'cart.apps.CartConfig',
@@ -157,7 +158,7 @@ ADMIN_REORDER = (
     ), 'label': 'Admin Operations'},
     {'app': 'cart', 'models': (
         'customer.Customer', 'product.Product', 'collection.Collection'
-    ), 'label': 'BagelDrop\'s Store'},
+    ), 'label': 'Store'},
     {'app': 'cart', 'models': (
         'cart.Cart', 'billing.Billing', 'coupon.Coupon', 'address.Address'
     ), 'label': 'Checkout'},

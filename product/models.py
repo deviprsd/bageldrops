@@ -24,7 +24,7 @@ class Product(CoreModel):
     limit = models.IntegerField('max number of product per order')
 
     def __str__(self):
-        return "{}".format(self.prod_name)
+        return f'{self.prod_name}'
 
     class Meta:
         ordering = ('prod_name', 'prod_id')
