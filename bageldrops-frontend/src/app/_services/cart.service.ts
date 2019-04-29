@@ -75,7 +75,7 @@ export class CartService {
     }
 
     public total() { //Total including tax
-        return ((parseFloat(this.tax()) + parseFloat(this.subtotal())).toFixed(2));
+        return (parseFloat(this.tax()) + parseFloat(this.subtotal())).toFixed(2);
     }
 
     public isCompleted() { //Checkout completed
