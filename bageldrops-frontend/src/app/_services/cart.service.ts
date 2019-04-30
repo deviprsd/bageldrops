@@ -6,6 +6,7 @@ import { Product } from '../_models/product';
 
 import { config } from '../_models';
 import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructions';
+import { CheckoutComponent } from '../checkout/checkout.component';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -14,7 +15,7 @@ export class CartService {
     public discount = 0; //Discount percent
     public completed = false; //Checkout completed
 
-    constructor() {}
+    constructor() { }
 
     addToCart(product: any) {
         var p = new Product();
@@ -22,7 +23,7 @@ export class CartService {
         let i = 0;
         for (i = 0; i < this.cart.length; i++) {
             if (this.cart[i].prod.prod_id == p.prod.prod_id) { // If this item is already in cart -> increment its amount to eliminate duplication
-                this.increment(this.cart[i]); 
+                this.increment(this.cart[i]);
                 break;
             }
         }
@@ -38,8 +39,7 @@ export class CartService {
         product.amount++;
     }
 
-    decrement(product: Product) { 
-        if (product.amount)
+    decrement(product: Product) {
         if (product.amount == 1) {
             // do nothing
         } else {
@@ -57,7 +57,11 @@ export class CartService {
     public subtotal() { //Gets cart subtotal
         var subtotal = 0;
         for (let i in this.cart) {
-            subtotal += (this.cart[i].prod.price * this.cart[i].amount) * (1 - this.discount);
+            if (this.cart[i].couponValid) {
+                subtotal += (this.cart[i].prod.price * this.cart[i].amount) * (1 - this.cart[i].discount);
+            } else {
+                subtotal += (this.cart[i].prod.price * this.cart[i].amount);
+            }
         }
         return subtotal.toFixed(2);
     }

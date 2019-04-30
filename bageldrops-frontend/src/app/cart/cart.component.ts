@@ -38,12 +38,13 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
-    //this.couponForm.setValue({ coupon: this.couponForm.controls.coupon.value });
     let x;
-    // console.log(JSON.stringify(this.couponForm.value));
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
       console.log(x);
-      this.cartService.discount = (x.discount * 1.0) / 100.0;
+      for (let i in this.cartService.cart) {
+        //go through collections for this specific coupon and see if any products are in there
+        this.cartService.discount = (x.discount * 1.0) / 100.0;
+      }
     } else {
       console.log('coupons do not match');
     }
