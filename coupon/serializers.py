@@ -8,6 +8,6 @@ class CouponSerializer(serializers.ModelSerializer):
         fields = (
             'cp_code', 'dis_type', 'discount', 'min_prod',
             'dis_strategy', 'dis_strategy_split', 'limit',
-            'exp_date'
+            'exp_date', 'collection'
         )
         read_only_fields = fields

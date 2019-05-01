@@ -29,7 +29,7 @@ export class CartComponent implements OnInit {
     });
     this.apiService.get('coupons').subscribe((coupons) => {
       this.coupons = coupons;
-
+      console.log(coupons);
     });
 
   }
