@@ -13,6 +13,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CartComponent implements OnInit {
   product: Product;
   coupons: Array<any>;
+  collections: Array<any>;
   cart = [];
   couponForm = new FormGroup({
     coupon: new FormControl('')
@@ -29,8 +30,12 @@ export class CartComponent implements OnInit {
     });
     this.apiService.get('coupons').subscribe((coupons) => {
       this.coupons = coupons;
-      console.log(coupons);
+      //console.log(coupons);
     });
+    this.apiService.get('collections').subscribe((collections) => {
+      this.collections = collections;
+      //console.log(this.collections);
+    })
 
   }
   getCart() {
@@ -41,9 +46,23 @@ export class CartComponent implements OnInit {
     let x;
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
       console.log(x);
-      for (let i in this.cartService.cart) {
-        //go through collections for this specific coupon and see if any products are in there
-        this.cartService.discount = (x.discount * 1.0) / 100.0;
+      for (let i in this.collections) {
+        //if (this.collections[i].id === x.collection)
+        for (let j in this.collections[i].products) {
+          for (let k in this.cartService.cart) {
+            //console.log(this.collections[i].products[j]);
+            if (this.collections[i].products[j] === this.cartService.cart[k].prod.prod_id) {
+              console.log(this.collections[i]);
+              console.log(this.collections[i].products[j] + " " + this.cartService.cart[k].prod.prod_id);
+              this.cartService.cart[k].couponValid = true;
+              this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
+            }
+          }
+          //if (this.collections[i].products[j])
+          //for (let i in this.cartService.cart) {
+          //go through collections for this specific coupon and see if any products are in there
+          //this.cartService.discount = (x.discount * 1.0) / 100.0;
+        }
       }
     } else {
       console.log('coupons do not match');
@@ -53,7 +72,7 @@ export class CartComponent implements OnInit {
 
   couponsMatch(apiCoupons: Array<any>, coupon: string) { //Coupon validation
     for (let i in apiCoupons) {
-      if (apiCoupons[i].cp_code == coupon.toUpperCase()) {
+      if (apiCoupons[i].cp_code.toUpperCase() == coupon.toUpperCase()) {
         return apiCoupons[i];
       }
     }
