@@ -32,11 +32,6 @@ export class CartComponent implements OnInit {
       this.coupons = coupons;
       //console.log(coupons);
     });
-    this.apiService.get('collections').subscribe((collections) => {
-      this.collections = collections;
-      //console.log(this.collections);
-    })
-
   }
   getCart() {
     this.cart = this.cartService.cart;
@@ -45,15 +40,15 @@ export class CartComponent implements OnInit {
   onSubmit() {
     let x;
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
-      console.log(x);
-      for (let i in this.collections) {
-        //if (this.collections[i].id === x.collection)
-        for (let j in this.collections[i].products) {
+      //console.log(x);
+      this.apiService.getFromId('collections', x.collection).subscribe((collection) => {
+        if(!collection.is_active) return;
+        for (let j in collection.products) {
           for (let k in this.cartService.cart) {
             //console.log(this.collections[i].products[j]);
-            if (this.collections[i].products[j] === this.cartService.cart[k].prod.prod_id) {
-              console.log(this.collections[i]);
-              console.log(this.collections[i].products[j] + " " + this.cartService.cart[k].prod.prod_id);
+            if (collection.products[j] === this.cartService.cart[k].prod.prod_id) {
+              console.log(collection);
+              console.log(collection.products[j] + " " + this.cartService.cart[k].prod.prod_id);
               this.cartService.cart[k].couponValid = true;
               this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
             }
@@ -63,7 +58,7 @@ export class CartComponent implements OnInit {
           //go through collections for this specific coupon and see if any products are in there
           //this.cartService.discount = (x.discount * 1.0) / 100.0;
         }
-      }
+      })
     } else {
       console.log('coupons do not match');
     }

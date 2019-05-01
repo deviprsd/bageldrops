@@ -19,6 +19,12 @@ export class ApiService {
         }));
     }
 
+    getFromId(name: string, id: number): Observable<any> {
+        return this.apis.pipe(switchMap((apis) => {
+            return this.http.get<any>(apis[name].replace('/?', `/${id}?`));
+        }));
+    }
+
     post(name: string, options): Observable<any> {
         return this.apis.pipe(switchMap((apis) => {
             return this.http.post<any>(apis[name], options);
