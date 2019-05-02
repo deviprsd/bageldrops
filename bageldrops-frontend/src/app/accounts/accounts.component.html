@@ -2,5 +2,17 @@
     <div class="container">
         <h3>Profile</h3>
         <h1 *ngIf="authenticationService.currentUserValue">{{ authenticationService.fullName }}</h1>
+        <button (click)="editName = true;" class="site-btn">Edit Name</button>
+        <aside class="editname-wrapper m-left">
+            <form *ngIf="editName" class="editname-form" [formGroup]="editNameForm">
+                <input type="text" id="first-name" aria-describedby="first-name" placeholder="First Name"
+                    formControlName="firstName" required>
+                <input type="text" id="last-name" aria-describedby="last-name" placeholder="Last Name"
+                    formControlName="lastName" required>
+                <button type="submit" (click)="onSubmit(confirm)" [disabled]="!editNameForm.valid"
+                    class="site-btn">Accept</button>
+                <button type="submit" (click)="editName = false;" class="site-btn">Cancel</button>
+            </form>
+        </aside>
     </div>
 </section>

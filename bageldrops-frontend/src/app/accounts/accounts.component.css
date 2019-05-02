@@ -1,0 +1,24 @@
+.editname-form input {
+    width: 100%;
+    height: 44px;
+    border: none;
+    padding: 0 18px;
+    background: #f0f0f0;
+    border-radius: 40px;
+    margin-bottom: 17px;
+    font-size: 14px;
+  }
+
+  .editname-wrapper {
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .editname-form {
+    padding-top: 20px;
+  }
+
+  .flex-container {
+      display: flex;
+      justify-content: flex-end;
+  }

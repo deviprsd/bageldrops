@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ApiService } from '../_services/api.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-accounts',
@@ -8,8 +9,13 @@ import { ApiService } from '../_services/api.service';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
+  editName = false;
+  editNameForm = new FormGroup({
+    firstName: new FormControl("", [Validators.required]),
+    lastName: new FormControl("", [Validators.required])
+  });
 
-  constructor(public authenticationService: AuthenticationService) { 
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService) {
 
   }
 
@@ -18,8 +24,13 @@ export class AccountsComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    //console.log(this.editNameForm.value.firstName + " " + this.editNameForm.value.lastName);
+    //this.apiService.post() implement posting new name values
+  }
+
   products() {
-    
+
   }
 
 }
