@@ -30,4 +30,10 @@ export class ApiService {
             return this.http.post<any>(apis[name], options);
         }));
     }
+
+    put(name: string, options): Observable<any> {
+        return this.apis.pipe(switchMap((apis) => {
+            return this.http.put<any>(apis[name], options);
+        }));
+    }
 }

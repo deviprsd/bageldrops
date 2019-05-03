@@ -8,4 +8,4 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = (
             'customer_id', 'email', 'password', 'name', 'billing_info', 'carts'
         )
-        read_only_fields = 'email'
+        read_only_fields = ['email']

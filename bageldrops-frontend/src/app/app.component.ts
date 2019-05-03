@@ -22,6 +22,8 @@ export class AppComponent {
 
     onSubmit() { //Search
         console.log(this.searchForm.value.search);
-        console.log(this.apiService.get(this.searchForm.value.search));
+        this.apiService.get('products').subscribe((products => {
+            console.log(products);
+        }));
     }
 }

@@ -39,6 +39,20 @@ export class AuthenticationService {
             }));
     }
 
+    updateName(first: string, last: string){
+        return this.http.post<any>(`${config.apiAuth}/token/`, { first, last })
+            .pipe(map(user => {
+                // login successful if there's a jwt token in the response
+                if (user && user.access) {
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(user);
+                }
+
+                return user;
+            }));
+    }
+
     logout() {
         localStorage.removeItem('currentUser'); // remove user from local storage to log user out
         this.currentUserSubject.next(null);
