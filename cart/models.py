@@ -4,11 +4,15 @@ from billing.models import Billing
 from product.models import Product
 
 
+# enum for cart state
 class CartState(Enum):
     COMPLETED = "Completed transaction"
     IN_PROGRESS = "Transaction in progress"
 
 
+# creates cart model with fields cart state, cart billing, and products
+# cart billing is inherited from billing model
+# products is inherited from product model
 class Cart(CoreModel):
     cart_state = models.CharField(
         'Cart State',

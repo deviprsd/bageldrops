@@ -5,21 +5,28 @@ from enum import Enum
 from django.utils import timezone
 
 
+# coupon expiration date
 def expiry_date():
     return timezone.now() + timezone.timedelta(days=15)
 
 
+# discount types
+# 0 for percentage discount
+# 1 for dollar amount discount
 class DisTypes(Enum):
     PERCENT = "Pecentage based discount"
     CASH = "Cash based discount"
 
 
+# discount strategies
 class DisStrategies(Enum):
     BOGO = "Buy one Get one"  # buy one get one
     BMDR = "Buy multiple Get Discount on Rest"  # buy multiple get discount on rest
     DEFA = "Apply Discount to Everything"  # apply discount to everything
 
 
+# creates coupon model with fields code, discount type, discount, minimum product purchase amount,
+# discount strategy, limit, expiration date, identifier for collection
 class Coupon(CoreModel):
     cp_code = models.CharField('coupon code', max_length=15)
     dis_type = models.CharField(
