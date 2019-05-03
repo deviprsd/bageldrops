@@ -19,4 +19,9 @@ export class AppComponent {
     logout() {
         this.authenticationService.logout();
     }
+
+    onSubmit() { //Search
+        console.log(this.searchForm.value.search);
+        console.log(this.apiService.get(this.searchForm.value.search));
+    }
 }

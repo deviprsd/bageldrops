@@ -40,12 +40,10 @@ export class CartComponent implements OnInit {
   onSubmit() {
     let x;
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
-      //console.log(x);
       this.apiService.getFromId('collections', x.collection).subscribe((collection) => {
-        if(!collection.is_active) return;
+        if (!collection.is_active) return;
         for (let j in collection.products) {
           for (let k in this.cartService.cart) {
-            //console.log(this.collections[i].products[j]);
             if (collection.products[j] === this.cartService.cart[k].prod.prod_id) {
               console.log(collection);
               console.log(collection.products[j] + " " + this.cartService.cart[k].prod.prod_id);
@@ -53,10 +51,6 @@ export class CartComponent implements OnInit {
               this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
             }
           }
-          //if (this.collections[i].products[j])
-          //for (let i in this.cartService.cart) {
-          //go through collections for this specific coupon and see if any products are in there
-          //this.cartService.discount = (x.discount * 1.0) / 100.0;
         }
       })
     } else {

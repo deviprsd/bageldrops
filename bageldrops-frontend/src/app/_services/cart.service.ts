@@ -7,6 +7,7 @@ import { Product } from '../_models/product';
 import { config } from '../_models';
 import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructions';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { ApiService } from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -15,7 +16,7 @@ export class CartService {
     public discount = 0; //Discount percent
     public completed = false; //Checkout completed
 
-    constructor() { }
+    constructor(apiService: ApiService) { }
 
     addToCart(product: any) {
         var p = new Product();
@@ -91,6 +92,10 @@ export class CartService {
         this.counter = 0;
         this.discount = 0;
         //this.completed = false;
+    }
+
+    public sendCartToServer() {
+        //this.apiService
     }
 
 }
