@@ -3,6 +3,7 @@ from core.models import models, CoreModel
 import uuid
 
 
+# product categories class
 class ProdCategories(Enum):
     CLOTHING = "Clothing/ Shoes/ Accessories"
     MEDIA = "Books/ Movies/ TV Shows/ Music"
@@ -10,6 +11,8 @@ class ProdCategories(Enum):
     MISC = "Misc"
 
 
+# creates product model with fields product name, price, unique product id, product category, stock,
+# and purchase limit
 class Product(CoreModel):
     prod_name = models.CharField('product name', max_length=50)
     price = models.FloatField('price', default=0.00)
