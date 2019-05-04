@@ -28,13 +28,6 @@ export class AccountsComponent implements OnInit {
   onSubmit() {
     //console.log(this.editNameForm.value.firstName + " " + this.editNameForm.value.lastName);
     //this.apiService.post() implement posting new name values
-    const user = this.authenticationService.currentUserValue;
-    user.firstName = this.editNameForm.value.firstName;
-    user.lastName = this.editNameForm.value.lastName;
-    console.log(user);
-    this.authenticationService.updateName(this.editNameForm.value.firstName, this.editNameForm.value.lastName);
-    //this.authenticationService.currentUser.firstName = this.editNameForm.value.firstName;
-    //this.apiService.put(editNameForm.firstName).subscribe(())
   }
 
   products() {
