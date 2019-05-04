@@ -76,6 +76,23 @@ export class RegisterComponent implements OnInit {
                 this.error = error;
             }
         );
+        /*
+        this.http.post<any>(`${config.apiAuth}/customers/`, {
+            username: this.f.username.value,
+            email: this.f.email.value,
+            password: this.f.password.value,
+            first_name: this.f.firstName.value,
+            last_name: this.f.lastName.value
+        })
+        .subscribe(
+            data => {
+                this.router.navigate(['/login']);
+            },
+            error => {
+                this.error = error;
+            }
+        );
+        */
     }
 
 }
