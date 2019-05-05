@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        this.http.post<any>(`${config.apiAuth}/accounts/register/`, {
+        this.http.post<any>(`${config.api}/customers/`, {
             username: this.f.username.value,
             email: this.f.email.value,
             password: this.f.password.value,
@@ -74,6 +74,7 @@ export class RegisterComponent implements OnInit {
             },
             error => {
                 this.error = error;
+                console.log(error);
             }
         );
         /*

@@ -24,6 +24,7 @@ from product import views as products
 from billing import views as billings
 from cart import views as carts
 from collection import views as collection
+from customer import views as customers
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(r'coupons', coupons.CouponViewSet)
@@ -31,6 +32,7 @@ router_v1.register(r'products', products.ProductViewSet)
 router_v1.register(r'billings', billings.BillingViewSet)
 router_v1.register(r'carts', carts.CartViewSet)
 router_v1.register(r'collections', collection.CollectionViewSet)
+router_v1.register(r'customers', customers.CustomerViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),
