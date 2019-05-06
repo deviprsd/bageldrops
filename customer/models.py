@@ -9,8 +9,8 @@ class Customer(CoreModel):
     username = models.CharField('Username', max_length=20, default='')
     email = models.CharField('Email', max_length=50, validators=[validate_email])
     password = models.CharField('Password', max_length=50)
-    first_name = models.CharField('First Name', max_length=50, default='')
-    last_name = models.CharField('Last Name', max_length=50, default='')
+    first_name = models.CharField('First Name', max_length=50)
+    last_name = models.CharField('Last Name', max_length=50)
     billing_info = models.ForeignKey(
         Billing,
         on_delete=models.SET_NULL,
