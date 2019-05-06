@@ -6,4 +6,5 @@ export class User {
     password: string;
     access?: string;
     refresh?: string;
+    customer_id: number;
 }

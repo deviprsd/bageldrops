@@ -15,6 +15,7 @@ export class AccountsComponent implements OnInit {
     firstName: new FormControl("", [Validators.required]),
     lastName: new FormControl("", [Validators.required])
   });
+  submitted = false;
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService) {
 
@@ -26,8 +27,15 @@ export class AccountsComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.editNameForm.value.firstName + " " + this.editNameForm.value.lastName);
-    //this.apiService.post() implement posting new name values
+    this.submitted = true;
+
+    if (!this.editNameForm.valid) {
+        return;
+    }
+
+    this.apiService.post('customers', {}).subscribe((data) => {
+      console.log(data)
+    });
   }
 
   products() {
