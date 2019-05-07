@@ -20,6 +20,8 @@ export class CartService {
     public discount = 0; //Discount percent
     public completed = false; //Checkout completed
     public currCustomer;
+    public billing;
+
     public options = new HttpHeaders({
         'Content-Type': 'application/json'
     });
@@ -31,10 +33,10 @@ export class CartService {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null) {
-
+                    if (this.currCustomer.carts == null && !this.currCustomer.carts.completed) {
+                        //create a new cart
                     } else {
-                        
+                        //pull existing cart
                     }
                 }
 
@@ -42,7 +44,7 @@ export class CartService {
         });
 
         //console.log(this.currCustomer);
-        /*
+        /* 
                 if (this.currCustomer.carts === null) {
                     //this.apiService.post('carts', this.options).subscribe((carts) => {
         
