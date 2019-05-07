@@ -32,6 +32,8 @@ class Cart(CoreModel):
         blank=True,
         null=True,
     )
+    subtotal = models.FloatField('Subtotal', default=0.0)
+    total = models.FloatField('Total', default=0.0)
 
     def __str__(self):
         return f'{self.id}'
