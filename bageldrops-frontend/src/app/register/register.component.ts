@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
             }
         );
         /*
-        this.http.post<any>(`${config.apiAuth}/customers/`, {
+        this.http.post<any>(`${config.apiAuth}/accounts/register`, {
             username: this.f.username.value,
             email: this.f.email.value,
             password: this.f.password.value,

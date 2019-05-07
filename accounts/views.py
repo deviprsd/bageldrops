@@ -10,7 +10,7 @@ from rest_framework.decorators import permission_classes
 @permission_classes((permissions.AllowAny,))
 class UserCreate(APIView):
     queryset = User.objects.all()
-
+    
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
