@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'core.apps.CoreConfig',
+    'tax.apps.TaxConfig',
     'coupon.apps.CouponConfig',
     'collection.apps.CollectionConfig',
     'product.apps.ProductConfig',

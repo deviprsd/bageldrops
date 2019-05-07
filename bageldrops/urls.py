@@ -21,18 +21,20 @@ from core.views import UserTokenObtainPairView
 
 from coupon import views as coupons
 from product import views as products
-from billing import views as billings
+from billing import views as billing
 from cart import views as carts
 from collection import views as collection
 from customer import views as customers
+from tax import views as tax
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(r'coupons', coupons.CouponViewSet)
 router_v1.register(r'products', products.ProductViewSet)
-router_v1.register(r'billings', billings.BillingViewSet)
+router_v1.register(r'billing', billing.BillingViewSet)
 router_v1.register(r'carts', carts.CartViewSet)
 router_v1.register(r'collections', collection.CollectionViewSet)
 router_v1.register(r'customers', customers.CustomerViewSet)
+router_v1.register(r'tax', tax.TaxViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),
