@@ -112,7 +112,7 @@ class Tax(CoreModel):
     tax_rate = models.FloatField(
         'Tax Rate',
         choices=[(x.name, x.value) for x in TaxRate],
-        default=.05,
+        default=TaxRate.WI.value,
         max_length=8
     )
     # state = models.CharField(
@@ -123,5 +123,5 @@ class Tax(CoreModel):
     # )
 
     def __str__(self):
-        return f'{self.TaxRate}'
+        return f'{self.TaxRate.name}'
 

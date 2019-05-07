@@ -1,6 +1,5 @@
 from core.models import models, CoreModel
 from address.models import Address
-from tax.models import Tax
 
 
 # creates billing model
@@ -9,7 +8,8 @@ from tax.models import Tax
 class Billing(CoreModel):
     billing_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_billing')
     delivery_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_delivery')
-    tax_rate = models.OneToOneField(Tax, on_delete=models.CASCADE, default=.05, related_name='%(class)s_tax')
+    tax_state = models.CharField('Tax State', max_length=8, default="WI")
+    tax_rate = models.FloatField('Tax Rate', default=0.05)
     card_number = models.BigIntegerField('Card Number')
     card_security_code = models.SmallIntegerField('Card Security Code')
     card_exp_date = models.CharField('Card Expiration Date', max_length=10)
