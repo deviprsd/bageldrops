@@ -1,8 +1,8 @@
 from rest_framework import viewsets
-from .serializers import BillingSerializer
-from .models import Billing
+from .serializers import AddressSerializer
+from .models import Address
 
 
 class BillingViewSet(viewsets.ModelViewSet):
-    queryset = Billing.objects.all()
-    serializer_class = BillingSerializer
+    queryset = Address.objects.all()
+    serializer_class = AddressSerializer

@@ -2,7 +2,7 @@ from enum import Enum
 from core.models import models, CoreModel
 
 
-class States(Enum):
+class StateTypes(Enum):
     AL = "Alabama"
     AK = "Alaska"
     AZ = "Arizona"
@@ -309,14 +309,13 @@ class CountryTypes(Enum):
 
 class Address(CoreModel):
     street_one = models.CharField('Street', max_length=100, null=False, blank=False)
-    street_two = models.CharField('Street', max_length=100, null=True, blank=True)
+    street_two = models.CharField('Street 2', max_length=100, null=True, blank=True)
     city = models.CharField('City', max_length=100, null=False, blank=False)
     state = models.CharField(
         'State',
-        choices=[(tag.name, tag.value) for tag in States],
-        default=States.AL.name,
-        max_length=8,
-        editable=False
+        choices=[(tag.name, tag.value) for tag in StateTypes],
+        default=StateTypes.WI.name,
+        max_length=8
     )
     zip = models.CharField('Zip Code', max_length=6, null=False, blank=False)
     country = models.CharField(
