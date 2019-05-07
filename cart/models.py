@@ -32,11 +32,12 @@ class Cart(CoreModel):
         blank=True,
         null=True,
     )
+    cart_id = models.CharField('ID', max_length=10, default="")
     subtotal = models.FloatField('Subtotal', default=0.0)
     total = models.FloatField('Total', default=0.0)
 
     def __str__(self):
-        return f'{self.id}'
+        return f'{self.cart_id}'
 
     class Meta:
         ordering = ('cart_billing', 'cart_state')
