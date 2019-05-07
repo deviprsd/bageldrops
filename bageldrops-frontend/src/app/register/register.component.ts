@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { AuthenticationService } from '../_services/authentication.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { config } from '../_models';
 import { map } from 'rxjs/operators';
+import { ApiService } from '../_services/api.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
     registerForm = new FormGroup({
@@ -30,8 +31,9 @@ export class RegisterComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private route: ActivatedRoute,
         private router: Router,
-        private http: HttpClient
-    ) {}
+        private http: HttpClient,
+        private apiService: ApiService
+    ) { }
 
     ngOnInit() {
         this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
@@ -61,24 +63,7 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        this.http.post<any>(`${config.api}/customers/`, {
-            username: this.f.username.value,
-            email: this.f.email.value,
-            password: this.f.password.value,
-            first_name: this.f.firstName.value,
-            last_name: this.f.lastName.value
-        })
-        .subscribe(
-            data => {
-                this.router.navigate(['/login']);
-            },
-            error => {
-                this.error = error;
-                console.log(error);
-            }
-        );
-        /*
-        this.http.post<any>(`${config.apiAuth}/accounts/register`, {
+        this.http.post<any>(`${config.apiAuth}/accounts/register/`, {
             username: this.f.username.value,
             email: this.f.email.value,
             password: this.f.password.value,
@@ -93,7 +78,6 @@ export class RegisterComponent implements OnInit {
                 this.error = error;
             }
         );
-        */ 
     }
 
 }

@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Product } from '../_models/product';
+import { User } from '../_models/user'
 
 import { config } from '../_models';
 import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructions';
 import { CheckoutComponent } from '../checkout/checkout.component';
 import { ApiService } from './api.service';
+import { post } from 'selenium-webdriver/http';
+import { AuthenticationService } from './authentication.service';
+
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -15,8 +19,59 @@ export class CartService {
     public counter = 0; //Used to index items
     public discount = 0; //Discount percent
     public completed = false; //Checkout completed
+    public currCustomer;
+    public options = new HttpHeaders({
+        'Content-Type': 'application/json'
+    });
 
-    constructor(apiService: ApiService) { }
+    constructor(public apiService: ApiService, public http: HttpClient, public authenticationService: AuthenticationService) {
+        const user = this.authenticationService.currentUserSubject.value;
+        this.apiService.get('customers').subscribe((customers) => {
+            for (let x in customers) {
+                if (user && user.customer_id === customers[x].user) {
+                    this.currCustomer = customers[x];
+                    console.log(this.currCustomer);
+                    if (this.currCustomer.carts == null) {
+
+                    } else {
+                        
+                    }
+                }
+
+            }
+        });
+
+        //console.log(this.currCustomer);
+        /*
+                if (this.currCustomer.carts === null) {
+                    //this.apiService.post('carts', this.options).subscribe((carts) => {
+        
+                   // });
+                }
+                */
+    }
+
+    /*runReInit() {
+        const user = this.authenticationService.currentUserSubject.value;
+        this.apiService.get('customers').subscribe((customers) => {
+            for (let x in customers) {
+                if (user && user.customer_id === customers[x].user) {
+                    this.currCustomer = customers[x];
+                }
+                console.log(customers[x]);
+                console.log(customers[x].user);
+            }
+        })
+        //console.log(this.currCustomer);
+        /*
+                if (this.currCustomer.carts === null) {
+                    //this.apiService.post('carts', this.options).subscribe((carts) => {
+        
+                   // });
+                }
+                */
+
+    //}
 
     addToCart(product: any) {
         var p = new Product();
@@ -34,6 +89,11 @@ export class CartService {
             this.cart[this.cart.length] = p;
             this.counter++;
         }
+        this.post();
+    }
+
+    post() {
+
     }
 
     increment(product: Product) {

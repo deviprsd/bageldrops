@@ -30,4 +30,10 @@ export class ApiService {
             return this.http.post<any>(apis[name], options);
         }));
     }
+
+    patch(name: string, options): Observable<any> {
+        return this.apis.pipe(switchMap((apis) => {
+            return this.http.patch<any>(apis[name], options);
+        }));
+    }
 }

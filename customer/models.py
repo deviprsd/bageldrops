@@ -1,16 +1,13 @@
-from django.core.validators import validate_email
+import uuid
 from core.models import models, CoreModel
 from billing.models import Billing
 from cart.models import Cart
+from django.contrib.auth.models import User
 
 
 class Customer(CoreModel):
-    customer_id = models.IntegerField('Customer ID', default=0)
-    username = models.CharField('Username', max_length=20, default='')
-    email = models.CharField('Email', max_length=50, validators=[validate_email])
-    password = models.CharField('Password', max_length=50)
-    first_name = models.CharField('First Name', max_length=50)
-    last_name = models.CharField('Last Name', max_length=50)
+    customer_id = models.CharField('Customer ID', max_length=36, default=uuid.uuid4)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer', null=True)
     billing_info = models.ForeignKey(
         Billing,
         on_delete=models.SET_NULL,
@@ -28,7 +25,7 @@ class Customer(CoreModel):
         return f'{self.customer_id}'
 
     class Meta:
-        ordering = ('email', 'password')
+        ordering = ('customer_id',)
         verbose_name = 'customer'
 
 
