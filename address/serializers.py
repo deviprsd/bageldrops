@@ -5,5 +5,6 @@ from .models import Address
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address
-        fields = ('billing_address', 'delivery_address', 'card_number', 'card_security_code', 'card_exp_data')
+        fields = ('street_one', 'street_two', 'city', 'state',
+                  'zip', 'country')
         read_only_fields = fields

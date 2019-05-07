@@ -12,7 +12,7 @@ class Billing(CoreModel):
     tax_rate = models.OneToOneField(Tax, on_delete=models.CASCADE, default=.05, related_name='%(class)s_tax')
     card_number = models.BigIntegerField('Card Number')
     card_security_code = models.SmallIntegerField('Card Security Code')
-    card_exp_data = models.CharField('Card Expiration Date', max_length=10)
+    card_exp_date = models.CharField('Card Expiration Date', max_length=10)
 
     def __str__(self):
         return f'{self.card_number}'
