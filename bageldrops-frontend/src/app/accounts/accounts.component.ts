@@ -13,8 +13,8 @@ export class AccountsComponent implements OnInit {
   pastCarts = [];
   editName = false;
   editNameForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required])
+    firstName: new FormControl("", [Validators.required]),
+    lastName: new FormControl("", [Validators.required])
   });
   submitted = false;
 
@@ -29,8 +29,8 @@ export class AccountsComponent implements OnInit {
     })
   }
 
-  // User must be able to edit their profile
-  // Just going to be able to edit their name
+  //User must be able to edit their profile
+  //Just going to be able to edit their name
   ngOnInit() {
   }
 
@@ -40,8 +40,8 @@ export class AccountsComponent implements OnInit {
     if (!this.editNameForm.valid) {
       return;
     }
-
-    this.apiService.patch('customers', 1, {first_name: 'test'}).subscribe((data) => {
+    console.log(this.editNameForm.value.firstName);
+    this.apiService.patch('customers',1, {first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}`}).subscribe((data) => {
       console.log(data);
     });
   }
