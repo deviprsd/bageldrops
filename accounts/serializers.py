@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
+from django.contrib.auth.models import User, Group
 from customer.models import Customer
-from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,9 +19,13 @@ class UserSerializer(serializers.ModelSerializer):
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name']
         )
+        user.groups.add(Group.objects.get(name='Customers'))
         customer = Customer(user=user)
         customer.save()
         return user
+
+    def update(self, instance, validated_data):
+        pass
 
     class Meta:
         model = User

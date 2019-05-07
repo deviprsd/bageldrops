@@ -9,11 +9,13 @@ class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
-    def post(self, request):
+    def create(self, request, *args, **kwargs):
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
-            user = serializer.save()
-            if user:
+            customer = serializer.save()
+            if customer:
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def partial_update(self, request, *args, **kwargs):
+        pass

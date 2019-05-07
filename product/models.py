@@ -16,7 +16,7 @@ class ProdCategories(Enum):
 class Product(CoreModel):
     prod_name = models.CharField('product name', max_length=50)
     price = models.FloatField('price', default=0.00)
-    prod_id = models.CharField('product ID', max_length=36, default=uuid.uuid4)
+    prod_id = models.CharField('product ID', max_length=36, default=uuid.uuid4, unique=True)
     prod_category = models.CharField(
         'product category',
         choices=[(x.name, x.value) for x in ProdCategories],

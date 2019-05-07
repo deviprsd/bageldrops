@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from datetime import timedelta
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -164,3 +166,7 @@ ADMIN_REORDER = (
         'cart.Cart', 'billing.Billing', 'coupon.Coupon', 'address.Address'
     ), 'label': 'Checkout'},
 )
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+}

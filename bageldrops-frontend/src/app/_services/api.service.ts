@@ -31,9 +31,9 @@ export class ApiService {
         }));
     }
 
-    patch(name: string, options): Observable<any> {
+    patch(name: string, id: number, options): Observable<any> {
         return this.apis.pipe(switchMap((apis) => {
-            return this.http.patch<any>(apis[name], options);
+            return this.http.patch<any>(apis[name].replace('/?', `/${id}?`), options);
         }));
     }
 }
