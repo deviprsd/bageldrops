@@ -41,9 +41,9 @@ export class AccountsComponent implements OnInit {
       return;
     }
     console.log(this.editNameForm.value.firstName);
-    this.apiService.patch('customers',1, {first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}`}).subscribe((data) => {
-      console.log(data);
-    });
+    //this.apiService.patch('customers',1, {first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}`}).subscribe((data) => {
+     // console.log(data);
+    //});
   }
 
   products() {
