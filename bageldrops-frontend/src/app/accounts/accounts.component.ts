@@ -10,6 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
+  pastCarts = [];
   editName = false;
   editNameForm = new FormGroup({
     firstName: new FormControl("", [Validators.required]),
@@ -18,7 +19,14 @@ export class AccountsComponent implements OnInit {
   submitted = false;
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService) {
-
+    this.apiService.get('carts').subscribe((carts) => {
+      for (let x in carts) {
+        if (carts[x].cart_state === 'COMPLETED'){
+          this.pastCarts[this.pastCarts.length] = carts[x];
+        }
+        //console.log(carts[x]);
+      }
+    })
   }
 
   //User must be able to edit their profile
@@ -30,7 +38,7 @@ export class AccountsComponent implements OnInit {
     this.submitted = true;
 
     if (!this.editNameForm.valid) {
-        return;
+      return;
     }
 
     this.apiService.post('customers', {}).subscribe((data) => {
