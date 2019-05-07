@@ -20,4 +20,10 @@ class CustomerViewSet(viewsets.ModelViewSet):
 
     def partial_update(self, request, *args, **kwargs):
         print('args partial_update: ', args)
+        serializer = CustomerSerializer(data=request.data, partial=True)
+        if serializer.is_valid():
+            customer = serializer.save()
+            if customer:
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         pass
