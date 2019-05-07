@@ -2,6 +2,59 @@ from enum import Enum
 from core.models import models, CoreModel
 
 
+class States(Enum):
+    AL = "Alabama"
+    AK = "Alaska"
+    AZ = "Arizona"
+    AR = "Arkansas"
+    CA = "California"
+    CO = "Colorado"
+    CT = "Connecticut"
+    DE = "Delaware"
+    FL = "Florida"
+    GA = "Georgia"
+    HI = "Hawaii"
+    ID = "Idaho"
+    IL = "Illinois"
+    IN = "Indiana"
+    IA = "Iowa"
+    KS = "Kansas"
+    KY = "Kentucky"
+    LA = "Louisiana"
+    ME = "Maine"
+    MD = "Maryland"
+    MA = "Massachusetts"
+    MI = "Michigan"
+    MN = "Minnesota"
+    MS = "Mississippi"
+    MO = "Missouri"
+    MT = "Montana"
+    NE = "Nebraska"
+    NV = "Nevada"
+    NH = "New Hampshire"
+    NJ = "New Jersey"
+    NM = "New Mexico"
+    NY = "New York"
+    NC = "North Carolina"
+    ND = "North Dakota"
+    OH = "Ohio"
+    OK = "Oklahoma"
+    OR = "Oregon"
+    PA = "Pennsylvania"
+    RI = "Rhode Island"
+    SC = "South Carolina"
+    SD = "South Dakota"
+    TN = "Tennessee"
+    TX = "Texas"
+    UT = "Utah"
+    VT = "Vermont"
+    VA = "Virginia"
+    WA = "Washington"
+    WV = "West Virginia"
+    WI = "Wisconsin"
+    WY = "Wyoming"
+
+
 class CountryTypes(Enum):
     AF = "Afghanistan"
     AX = "Aland Islands"
@@ -258,7 +311,13 @@ class Address(CoreModel):
     street_one = models.CharField('Street', max_length=100, null=False, blank=False)
     street_two = models.CharField('Street', max_length=100, null=True, blank=True)
     city = models.CharField('City', max_length=100, null=False, blank=False)
-    state = models.CharField('State', max_length=100, null=False, blank=False)
+    state = models.CharField(
+        'State',
+        choices=[(tag.name, tag.value) for tag in States],
+        default=States.AL.name,
+        max_length=8,
+        editable=False
+    )
     zip = models.CharField('Zip Code', max_length=6, null=False, blank=False)
     country = models.CharField(
         'Country',

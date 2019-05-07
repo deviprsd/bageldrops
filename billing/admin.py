@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Billing
 
+
 # registers billing and appropriate fields in admin
 @admin.register(Billing)
 class BillingAdmin(admin.ModelAdmin):
