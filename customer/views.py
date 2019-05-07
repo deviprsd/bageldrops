@@ -10,6 +10,7 @@ class CustomerViewSet(viewsets.ModelViewSet):
     serializer_class = CustomerSerializer
 
     def create(self, request, *args, **kwargs):
+        print('args create: ', args)
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
             customer = serializer.save()
@@ -18,5 +19,5 @@ class CustomerViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def partial_update(self, request, *args, **kwargs):
-        print(args)
+        print('args partial_update: ', args)
         pass
