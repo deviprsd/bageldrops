@@ -34,10 +34,16 @@ export class CartService {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null && !this.currCustomer.carts.completed) {
-                        //create a new cart
+                    if (this.currCustomer.carts == null || !this.currCustomer.carts.completed) {
+                        this.http.post<any>(`${config.api}/carts/`, {cart_id: user.customer_id}).subscribe((dbCarts) => {
+                            this.cart = dbCarts;
+                        })
                     } else {
-                        //pull existing cart
+                        this.apiService.get('carts').subscribe((dbCarts) => {
+                            for (let i in dbCarts) {
+
+                            }
+                        });
                     }
                 }
 
@@ -56,15 +62,23 @@ export class CartService {
 
     runReInit() {
         const user = this.authenticationService.currentUserSubject.value;
+        console.log(user.customer_id);
         this.apiService.get('customers').subscribe((customers) => {
+            console.log(customers);
             for (let x in customers) {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null && !this.currCustomer.carts.completed) {
-                        //create a new cart
+                    if (this.currCustomer.carts == null || !this.currCustomer.carts.completed) {
+                        this.http.post<any>(`${config.api}/carts/`, {cart_id: user.customer_id}).subscribe((dbCarts) => {
+                            this.cart = dbCarts;
+                        })
                     } else {
-                        //pull existing cart
+                        this.apiService.get('carts').subscribe((dbCarts) => {
+                            for (let i in dbCarts) {
+
+                            }
+                        });
                     }
                 }
 

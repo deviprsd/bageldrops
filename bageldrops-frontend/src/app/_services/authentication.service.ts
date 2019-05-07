@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { User, config } from '../_models';
+import { CartService } from './cart.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -37,6 +38,7 @@ export class AuthenticationService {
 
                 return user;
             }));
+            
     }
 
     logout() {
