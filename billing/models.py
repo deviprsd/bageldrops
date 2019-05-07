@@ -10,8 +10,8 @@ class Billing(CoreModel):
     delivery_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_delivery')
     tax_state = models.CharField('Tax State', max_length=8, default="WI")
     tax_rate = models.FloatField('Tax Rate', default=0.05)
-    card_number = models.BigIntegerField('Card Number')
-    card_security_code = models.SmallIntegerField('Card Security Code')
+    card_number = models.CharField('Card Number', max_length=16)
+    card_security_code = models.CharField('Card Security Code', max_length=16)
     card_exp_date = models.CharField('Card Expiration Date', max_length=10)
 
     def __str__(self):
