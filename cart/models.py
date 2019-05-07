@@ -33,8 +33,8 @@ class Cart(CoreModel):
         null=True,
     )
 
-    def __str__(self):
-        return f'{self.id}'
+    #def __str__(self):
+        #return f'{self.id}'
 
     class Meta:
         ordering = ('cart_billing', 'cart_state')

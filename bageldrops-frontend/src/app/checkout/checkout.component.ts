@@ -41,10 +41,14 @@ export class CheckoutComponent implements OnInit {
   }
 
   open(content) { //Opening modal for checkout completion
+    this.apiService.get('billings').subscribe((billings) => {
+      console.log(billings);
+    })
     console.log(content);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       if (`${result}` == 'Confirm click') { //Order is completed
+        //figure out how to actually access the address
         this.cartService.completed = true;
         this.cartService.clearCart();
       }
