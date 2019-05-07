@@ -29,6 +29,7 @@ export class CartService {
     constructor(public apiService: ApiService, public http: HttpClient, public authenticationService: AuthenticationService) {
         const user = this.authenticationService.currentUserSubject.value;
         this.apiService.get('customers').subscribe((customers) => {
+            console.log(customers);
             for (let x in customers) {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
@@ -53,27 +54,23 @@ export class CartService {
                 */
     }
 
-    /*runReInit() {
+    runReInit() {
         const user = this.authenticationService.currentUserSubject.value;
         this.apiService.get('customers').subscribe((customers) => {
             for (let x in customers) {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
+                    console.log(this.currCustomer);
+                    if (this.currCustomer.carts == null && !this.currCustomer.carts.completed) {
+                        //create a new cart
+                    } else {
+                        //pull existing cart
+                    }
                 }
-                console.log(customers[x]);
-                console.log(customers[x].user);
-            }
-        })
-        //console.log(this.currCustomer);
-        /*
-                if (this.currCustomer.carts === null) {
-                    //this.apiService.post('carts', this.options).subscribe((carts) => {
-        
-                   // });
-                }
-                */
 
-    //}
+            }
+        });
+    }
 
     addToCart(product: any) {
         var p = new Product();

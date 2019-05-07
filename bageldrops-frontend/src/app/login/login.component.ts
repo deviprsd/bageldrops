@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { first } from 'rxjs/operators';
+import { CartService } from '../_services/cart.service';
 
 @Component({
     selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
         private titleService: Title,
         private authenticationService: AuthenticationService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        private cartService : CartService
     ) { }
 
     ngOnInit() {
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                 }
             );
+            this.cartService.runReInit();
         //Must push new cart out
     }
 }
