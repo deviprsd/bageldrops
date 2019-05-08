@@ -34,7 +34,7 @@ export class CartService {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null) {
+                    if (this.currCustomer.carts === null) {
                         if (this.currCustomer.carts.completed) {
                             //this.apiService.patch('carts', 
                         }

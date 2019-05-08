@@ -8,7 +8,7 @@
                 <input type="text" id="first-name" aria-describedby="first-name" placeholder="First Name"
                     value="{{ authenticationService.currentUserValue.firstName }}" formControlName="firstName" required>
                 <input type="text" id="last-name" aria-describedby="last-name" placeholder="Last Name"
-                    value="{{ authenticationService.currentUserValue.lasttName }}" formControlName="lastName" required>
+                    value="{{ authenticationService.currentUserValue.lastName }}" formControlName="lastName" required>
                 <input type="text" id="email" aria-describedby="email" placeholder="Email"
                     value="{{ authenticationService.currentUserValue.email }}" formControlName="email" required>
                 <button type="submit" (click)="onSubmit(confirm)" [disabled]="!editNameForm.valid"
@@ -16,10 +16,23 @@
                 <button type="submit" (click)="editName = false;" class="site-btn">Cancel</button>
             </form>
         </aside>
-        <h3>Orders</h3>
+       <!-- <h3>Orders</h3>
         <div *ngIf="pastCarts.length != 0">
             <h1 *ngFor="let cart of pastCarts">Your Past Orders</h1>
-            <!--<h6 *ngFor="let x of pastCarts[cart].products">{{ this.pastCarts[cart].products[x] }}</h6>-->
-        </div>
+            <h6 *ngFor="let x of pastCarts[cart].products">{{ this.pastCarts[cart].products[x] }}</h6>
+        </div>-->
+        <h2>Billing & Shipping</h2>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                Billing
+                <h6></h6>
+              </div>
+              <div class="col-sm">
+                Shipping
+                <h6></h6>
+              </div>
+            </div>
+          </div>
     </div>
 </section>
