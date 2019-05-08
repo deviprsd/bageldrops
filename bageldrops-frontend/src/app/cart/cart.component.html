@@ -33,7 +33,7 @@
           </button>
         </div>
         <div class="col-1">
-          <img class="image" src="assets/img/product/1.jpg" alt="Product Image">
+          <img class="image" src="{{ product.prod.images }}" alt="Product Image">
         </div>
         <div class="col-1">
           <p>Bageldrops{{ product.prod.prod_name }}
@@ -59,77 +59,6 @@
   </div>
 </div>
 
-<!-- 
-<div class="shopping-cart">
-  <div class="title">
-    Your Cart
-  </div>
- 
-  <div class="item">
-    <button class="delete-btn" type="button" name="button">
-      <img src="assets/img/delete.png" alt="" />
-    </button>
- 
-    <div class="image">
-      <img src="assets/img/product/1.jpg" alt="Product Image" />
-    </div>
- 
-    <div class="description">
-      <span>Product name</span>
-      <span>Thats a tasty bagel</span>
-    </div>
- 
-    <div class="quantity">
-      <button class="plus-btn" type="button" name="button" onClick = plusItem()>
-        <img src="assets/img/arrow-up.png" alt="" />
-      </button>
-      <input type="text" name="name" value="1">
-      <button class="minus-btn" type="button" name="button" onClick = minusItem()>
-        <img src="assets/img/arrow-down.png" alt="" />
-      </button>
-    </div>
-    <div class="item-price">$00.00</div>
-  </div>
-</div> -->
-
-<!-- <div class="shopping-cart">
-  <div class="title">
-    Your Cart
-  </div>
-  <div class="column">
-    <div class="col-lg-3 col-sm-6 text-center" *ngFor="let product of cart">
-      <div class="product-item">
-
-        <div class="item">
-          <button class="delete-btn" type="button" name="button" (click)="cartService.removeFromCart(product)"
-            (click)="cartService.subtotal()">
-            X
-          </button>
-
-          <img src="assets/img/product/1.jpg" alt="Product Image">
-
-          <p>{{ product.prod.prod_name }}
-            Thats a tasty bagel</p>
-
-          <div class="quantity">
-            <button class="plus-btn" type="button" name="button" (click)=cartService.increment(product)>
-              <img src="assets/img/arrow-up.png" alt="" />
-            </button>
-            <div>{{ product.ammount }}</div>
-            <button class="minus-btn" type="button" name="button" (click)=cartService.decrement(product)>
-              <img src="assets/img/arrow-down.png" alt="" />
-            </button>
-          </div>
-          <div class="item-price">${{ product.prod.price }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="total">
-  <span>Subtotal: ${{ cartService.subtotal() }}</span>
-</div> -->
 <span *ngIf="cartService.cart.length!=0">
   <div class="row">
     <div class="col-lg-7 col-sm-5"></div>

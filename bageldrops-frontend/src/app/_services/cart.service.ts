@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from '../_models/product';
 import { ApiService } from './api.service';
 import { AuthenticationService } from './authentication.service';
+import { ACTIVE_INDEX } from '@angular/core/src/render3/interfaces/container';
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,6 +13,7 @@ export class CartService {
     public completed = false; //Checkout completed
     public currCustomer;
     public billing;
+    public activeCart;
 
     constructor(public apiService: ApiService, public authenticationService: AuthenticationService) {
         // const user = this.authenticationService.currentUserSubject.value;
@@ -50,10 +52,23 @@ export class CartService {
     }
 
     setCartFromDB(cart: any) {
-        console.log(cart);
+        this.activeCart = cart;
+        const quantities = JSON.parse(this.activeCart.quantities)
+        
+        for (let x in cart.products) {
+            this.apiService.getFromId('products', cart.products[x]).subscribe((product) => {
+                const p = new Product();
+                p.prod = product;
+                p.amount = quantities[p.prod.id];
+                this.cart.push(p)
+            });
+        }
     }
 
     runReInit() {
+        if(this.activeCart) {
+            return;
+        }
         const user = this.authenticationService.currentUserSubject.value;
         if (user) {
             this.currCustomer = user;
@@ -71,29 +86,31 @@ export class CartService {
 
                         }).subscribe((newCart) => {
                             console.log(newCart);
+                            this.setCartFromDB(newCart);
                         });
                 } else {
                     this.apiService.get('carts').subscribe((carts) => {
                         for (let x in carts) {
                             if (carts[x].customer === user.customer_id) {
                                 if (carts[x].cart_state == 'IN_PROGRESS') { // pickup saved cart
-                                    this.setCartFromDB(carts);
-                                } else {
-                                    this.apiService.post(
-                                        'carts',
-                                        {
-                                            cart_state: 'IN_PROGRESS',
-                                            subtotal: 0,
-                                            total: 0,
-                                            products: [],
-                                            cart_billing: null,
-                                            customer: user.customer_id
-                
-                                        }).subscribe((newCart) => {
-                                            console.log(newCart);
-                                        });
+                                    this.setCartFromDB(carts[x]);
                                 }
                             }
+                        }
+                        if(!this.activeCart) {
+                            this.apiService.post(
+                                'carts',
+                                {
+                                    cart_state: 'IN_PROGRESS',
+                                    subtotal: 0,
+                                    total: 0,
+                                    products: [],
+                                    cart_billing: null,
+                                    customer: user.customer_id
+        
+                                }).subscribe((newCart) => {
+                                    this.setCartFromDB(newCart);
+                                });
                         }
                     });
                 }
@@ -120,22 +137,26 @@ export class CartService {
         this.post();
     }
 
-
-
     post() {
-        // this.apiService.post(
-        //     'carts',
-        //     {
-        //         cart_state: 'IN_PROGRESS',
-        //         cart_id: `${this.currCustomer.customer_id}`,
-        //         subtotal: this.subtotal(),
-        //         //total: 0,
-        //         products: JSON.stringify(this.cart)
-                
-        //     }
-        // ).subscribe((carts) => {
-        //     console.log(carts);
-        // })
+        const products = {}
+        for (let x in this.cart) {
+            products[this.cart[x].prod.id] = this.cart[x].amount;
+        }
+
+        this.apiService.patch(
+            'carts',
+            this.activeCart.id,
+            {
+                cart_state: 'IN_PROGRESS',
+                subtotal: this.subtotal(),
+                total: 0,
+                products: Object.keys(products),
+                quantities: JSON.stringify(products)
+
+            }
+        ).subscribe((carts) => {
+            console.log(carts);
+        })
     }
 
     increment(product: Product) {
@@ -148,6 +169,7 @@ export class CartService {
         } else {
             product.amount--;
         }
+        this.post();
     }
 
     removeFromCart(product: Product) {
@@ -155,6 +177,7 @@ export class CartService {
         if (index > -1) {
             this.cart.splice(index, 1);
         }
+        this.post();
     }
 
     public subtotal() { //Gets cart subtotal
@@ -190,10 +213,35 @@ export class CartService {
     }
 
     public clearCart() { //Used after completing checkout
+        this.postCompleted();
+        this.activeCart = null;
         this.cart = [];
         this.counter = 0;
         this.discount = 0;
         //this.completed = false;
+        //this.runReInit();
+    }
+
+    public postCompleted(){
+        const products = {}
+        for (let x in this.cart) {
+            products[this.cart[x].prod.id] = this.cart[x].amount;
+        }
+
+        this.apiService.patch(
+            'carts',
+            this.activeCart.id,
+            {
+                cart_state: 'COMPLETED',
+                subtotal: this.subtotal(),
+                total: 0,
+                products: Object.keys(products),
+                quantities: JSON.stringify(products)
+
+            }
+        ).subscribe((carts) => {
+            console.log(carts);
+        })
     }
 
     public sendCartToServer() {

@@ -49,6 +49,9 @@ export class CartComponent implements OnInit {
               console.log(collection.products[j] + " " + this.cartService.cart[k].prod.prod_id);
               this.cartService.cart[k].couponValid = true;
               this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
+            } else {
+              this.cartService.cart[k].couponValid = false;
+              this.cartService.cart[k].discount = 0;
             }
           }
         }
@@ -60,8 +63,9 @@ export class CartComponent implements OnInit {
   }
 
   couponsMatch(apiCoupons: Array<any>, coupon: string) { //Coupon validation
+    const today = new Date();
     for (let i in apiCoupons) {
-      if (apiCoupons[i].cp_code.toUpperCase() == coupon.toUpperCase()) {
+      if (apiCoupons[i].cp_code.toUpperCase() == coupon.toUpperCase() && (today < (new Date(apiCoupons[i].exp_date)))) {
         return apiCoupons[i];
       }
     }

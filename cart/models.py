@@ -43,6 +43,7 @@ class Cart(CoreModel):
         blank=True,
         null=True,
     )
+    quantities = models.TextField('JSON Quantities', default='')
 
     def __str__(self):
         return f'{self.cart_id}'

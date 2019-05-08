@@ -14,7 +14,8 @@ export class AppComponent {
         search: new FormControl('')
     });
 
-    constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) { }
+    constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService) { 
+    }
 
     logout() {
         this.authenticationService.logout();
