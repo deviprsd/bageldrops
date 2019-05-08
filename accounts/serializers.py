@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from customer.models import Customer
 
 
+# sets user fields to be used by front end
 class UserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True, validators=[UniqueValidator(queryset=User.objects.all())])
     username = serializers.CharField(max_length=32, validators=[UniqueValidator(queryset=User.objects.all())])
@@ -12,6 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(allow_blank=False)
 
     def create(self, validated_data):
+        """
+        function used to create new user
+        has fields username, email, password, first_name, last_name
+        :param validated_data:
+        :return:
+        """
         user = User.objects.create_user(
             validated_data['username'],
             validated_data['email'],
@@ -21,8 +28,6 @@ class UserSerializer(serializers.ModelSerializer):
         )
         user.groups.add(Group.objects.get(name='Customers'))
         customer = Customer(user=user)
-        print(user)
-        print(customer.user)
         customer.save()
         return user
 

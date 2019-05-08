@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Billing
 
 
-# sets read only fields for billing
+# sets billing fields to be used by front end
 class BillingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Billing

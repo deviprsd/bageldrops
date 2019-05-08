@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Address
 
 
+# sets address fields to be used by front end
 class AddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = Address

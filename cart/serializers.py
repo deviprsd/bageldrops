@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Cart
 
 
-# sets cart fields
+# sets cart fields to be used by front end
 class CartSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cart

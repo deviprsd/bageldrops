@@ -6,11 +6,20 @@ from .models import Customer
 from rest_framework.response import Response
 
 
+# creates customer queryset and serializer class
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
     def partial_update(self, request, *args, **kwargs):
+        """
+        for PATCH requests
+        Updates specified user fields if user exists
+        :param request:
+        :param args:
+        :param kwargs:
+        :return:
+        """
         user_data, customer_data = {}, {}
         for key, value in request.data.items():
             if key in ['first_name', 'last_name', 'email']:
