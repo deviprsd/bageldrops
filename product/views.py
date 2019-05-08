@@ -3,7 +3,6 @@ from .serializers import ProductSerializer
 from .models import Product
 
 
-# creates queryset and serializer
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

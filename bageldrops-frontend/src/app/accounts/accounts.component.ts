@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../_services/authentication.service';
 import { ApiService } from '../_services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 // { userInfo } from 'os';
 
 @Component({
@@ -13,20 +14,17 @@ export class AccountsComponent implements OnInit {
   pastCarts = [];
   editName = false;
   editNameForm = new FormGroup({
-    firstName: new FormControl("", [Validators.required]),
-    lastName: new FormControl("", [Validators.required])
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required])
   });
   submitted = false;
 
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService) {
-    this.apiService.get('carts').subscribe((carts) => {
-      for (let x in carts) {
-        if (carts[x].cart_state === 'COMPLETED'){
-          this.pastCarts[this.pastCarts.length] = carts[x];
-        }
-        //console.log(carts[x]);
-      }
-    })
+  public options = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
+  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, public http: HttpClient) {
   }
 
   //User must be able to edit their profile
@@ -35,15 +33,23 @@ export class AccountsComponent implements OnInit {
   }
 
   onSubmit() {
+    const user = this.authenticationService.currentUserValue;
     this.submitted = true;
 
     if (!this.editNameForm.valid) {
       return;
     }
-    console.log(this.editNameForm.value.firstName);
-    this.apiService.patch('customers',1, {first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}`}).subscribe((data) => {
-      console.log(data);
-    });
+
+    this.apiService.patch(
+      'customers',
+      user.customer_id,
+      {
+        first_name: `${this.editNameForm.value.firstName}`,
+        last_name: `${this.editNameForm.value.lastName}`,
+        email: `${this.editNameForm.value.email}`
+      }).subscribe((data) => {
+        console.log(data);
+      });
   }
 
   products() {
