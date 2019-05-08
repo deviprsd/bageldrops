@@ -8,4 +8,3 @@ class BillingSerializer(serializers.ModelSerializer):
         model = Billing
         fields = ('billing_address', 'delivery_address', 'card_number',
                   'card_security_code', 'card_exp_date', 'customer')
-        read_only_fields = fields
