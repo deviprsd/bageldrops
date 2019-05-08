@@ -12,37 +12,36 @@ export class AuthenticationService {
     public currentUser: Observable<User>;
 
     constructor(private http: HttpClient) {
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUser = this.currentUserSubject.asObservable();
     }
 
     public get currentUserValue(): User {
-        return this.currentUserSubject.value;
+      return this.currentUserSubject.value;
     }
 
     public get fullName(): string {
-        const user = this.currentUserValue;
-        return `${user.firstName} ${user.lastName}`;
+      const user = this.currentUserValue;
+      return `${user.firstName} ${user.lastName}`;
     }
 
 
     login(username: string, password: string) {
-        return this.http.post<any>(`${config.apiAuth}/token/`, { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.access) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
+      return this.http.post<any>(`${config.apiAuth}/token/`, { username, password })
+        .pipe(map(user => {
+          // login successful if there's a jwt token in the response
+          if (user && user.access) {
+              // store user details and jwt token in local storage to keep user logged in between page refreshes
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              this.currentUserSubject.next(user);
+          }
 
-                return user;
-            }));
-            
+          return user;
+      }));
     }
 
     logout() {
-        localStorage.removeItem('currentUser'); // remove user from local storage to log user out
-        this.currentUserSubject.next(null);
+      localStorage.removeItem('currentUser'); // remove user from local storage to log user out
+      this.currentUserSubject.next(null);
     }
 }

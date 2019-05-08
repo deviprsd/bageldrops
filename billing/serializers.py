@@ -7,5 +7,5 @@ class BillingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Billing
         fields = ('billing_address', 'delivery_address', 'card_number',
-                  'card_security_code', 'card_exp_date', 'tax_rate')
+                  'card_security_code', 'card_exp_date', 'customer')
         read_only_fields = fields

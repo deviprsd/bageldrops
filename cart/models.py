@@ -1,6 +1,7 @@
 from core.models import models, CoreModel
 from enum import Enum
 from billing.models import Billing
+from customer.models import Customer
 from product.models import Product
 
 
@@ -26,15 +27,20 @@ class Cart(CoreModel):
         primary_key=True,
         default=None,
     )
-    products = models.ForeignKey(
+    products = models.ManyToManyField(
         Product,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
+        related_name='carts'
     )
     cart_id = models.CharField('ID', max_length=10, default="")
     subtotal = models.FloatField('Subtotal', default=0.0)
     total = models.FloatField('Total', default=0.0)
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.SET_NULL,
+        related_name='carts',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return f'{self.cart_id}'

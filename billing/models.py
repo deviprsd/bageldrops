@@ -1,5 +1,6 @@
 from core.models import models, CoreModel
 from address.models import Address
+from customer.models import Customer
 
 
 # creates billing model
@@ -8,11 +9,16 @@ from address.models import Address
 class Billing(CoreModel):
     billing_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_billing')
     delivery_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_delivery')
-    tax_state = models.CharField('Tax State', max_length=8, default="WI")
-    tax_rate = models.FloatField('Tax Rate', default=0.05)
     card_number = models.CharField('Card Number', max_length=16)
     card_security_code = models.CharField('Card Security Code', max_length=16)
     card_exp_date = models.CharField('Card Expiration Date', max_length=10)
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.SET_NULL,
+        related_name='billing',
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return f'{self.card_number}'

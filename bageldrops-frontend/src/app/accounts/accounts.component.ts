@@ -20,30 +20,19 @@ export class AccountsComponent implements OnInit {
     email: new FormControl('', [Validators.required])
   });
   submitted = false;
-  billingInfo: any;
-  billingAddress: any;
-  shippingAddress: any;
 
   public options = new HttpHeaders({
     'Content-Type': 'application/json'
   });
 
-  constructor(public authenticationService: AuthenticationService, public apiService: ApiService, public http: HttpClient) {
-    this.http.get<any>(`${config.api}/billing/${this.authenticationService.currentUserValue.customer_id}/`).subscribe((billing) => {
-      this.billingInfo = billing;
-      this.http.get<any>(`${config.api}/addresses/${this.billingInfo.billing_address}`).subscribe((billingAddress) => {
-        this.billingAddress = billingAddress;
-      });
-      this.http.get<any>(`${config.api}/addresses/${this.billingInfo.delivery_address}`).subscribe((shippingAddress) => {
-        this.shippingAddress = shippingAddress;
-      });
+  constructor(
+    public authenticationService: AuthenticationService,
+    public apiService: ApiService,
+    public http: HttpClient
+  ) {}
 
-    });
-    
-  }
-
-  //User must be able to edit their profile
-  //Just going to be able to edit their name
+  // User must be able to edit their profile
+  // Just going to be able to edit their name
   ngOnInit() {
   }
 
