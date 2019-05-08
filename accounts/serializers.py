@@ -24,9 +24,6 @@ class UserSerializer(serializers.ModelSerializer):
         customer.save()
         return user
 
-    def update(self, instance, validated_data):
-        pass
-
     class Meta:
         model = User
         fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')

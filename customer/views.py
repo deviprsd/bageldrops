@@ -1,35 +1,38 @@
+from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .serializers import CustomerSerializer
 from .models import Customer
 from rest_framework.response import Response
-from rest_framework import status
 
 
 class CustomerViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 
-    def create(self, request, *args, **kwargs):
-        print('args create: ', args)
-        serializer = CustomerSerializer(data=request.data)
-        if serializer.is_valid():
-            customer = serializer.save()
-            if customer:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def partial_update(self, request, *args, **kwargs):
+        user_data, customer_data = {}, {}
+        for key, value in request.data.items():
+            if key in ['first_name', 'last_name', 'email']:
+                user_data[key] = value
 
-    def get_object(self, pk):
-        print(pk, '\nREEEEEE\n\n\n\n')
-        return Customer.objects.get(pk = pk)
+        for key, value in request.data.items():
+            if key in ['cart', 'billing']:
+                customer_data[key] = value
 
-    def partial_update(self, request, *args, pk):
-        print(pk, "\n\n\n\n\n\n")
-        customer = self.get_object(pk)
-        
-        print(customer)
-        serializer = CustomerSerializer(customer, data=request.data, partial=True)
-        if serializer.is_valid():
-            customer.save()
-            if customer:
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        customer_instance = self.get_object()
+        customer_serializer = self.get_serializer(customer_instance, data=customer_data, partial=True)
+        if customer_serializer.is_valid():
+            self.perform_update(customer_serializer)
+
+            if getattr(customer_instance, '_prefetched_objects_cache', None):
+                customer_instance._prefetched_objects_cache = {}
+
+        user_instance = customer_instance.user
+        user_serializer = self.get_serializer(user_instance, data=user_data, partial=True)
+        if user_serializer.is_valid():
+            self.perform_update(user_serializer)
+
+            if getattr(user_instance, '_prefetched_objects_cache', None):
+                user_instance._prefetched_objects_cache = {}
+
+        return Response(customer_serializer.data)
