@@ -1,15 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
 import { Product } from '../_models/product';
-import { User } from '../_models/user'
-
-import { config } from '../_models';
-import { queueComponentIndexForCheck } from '@angular/core/src/render3/instructions';
-import { CheckoutComponent } from '../checkout/checkout.component';
 import { ApiService } from './api.service';
-import { post } from 'selenium-webdriver/http';
 import { AuthenticationService } from './authentication.service';
 
 
@@ -22,59 +13,92 @@ export class CartService {
     public currCustomer;
     public billing;
 
-    public options = new HttpHeaders({
-        'Content-Type': 'application/json'
-    });
+    constructor(public apiService: ApiService, public authenticationService: AuthenticationService) {
+        // const user = this.authenticationService.currentUserSubject.value;
+        // if (user) {
+        //     this.currCustomer = user;
+        //     this.apiService.getFromId('customers', user.customer_id).subscribe((customers) => {
+        //         console.log(customers.carts)
+        //         if (customers.carts == []) { //No current cart
+        //             this.apiService.post(
+        //                 'carts',
+        //                 {
+        //                     cart_state: 'IN_PROGRESS',
+        //                     subtotal: 0,
+        //                     total: 0,
+        //                     products: [],
+        //                     cart_billing: null
 
-    constructor(public apiService: ApiService, public http: HttpClient, public authenticationService: AuthenticationService) {
-        const user = this.authenticationService.currentUserSubject.value;
-        this.apiService.get('customers').subscribe((customers) => {
-            console.log(customers);
-            for (let x in customers) {
-                if (user && user.customer_id === customers[x].user) {
-                    this.currCustomer = customers[x];
-                    console.log(this.currCustomer);
-                    if (this.currCustomer.carts === null) {
-                        if (this.currCustomer.carts.completed) {
-                            //this.apiService.patch('carts', 
-                        }
-                    } else {
-                        this.apiService.get('carts').subscribe((dbCarts) => {
-                            for (let i in dbCarts) {
+        //                 }).subscribe((newCart) => {
+        //                     console.log(newCart);
+        //                 });
+        //         } else {
+        //             this.apiService.get('carts').subscribe((carts) => {
+        //                 for (let x in carts) {
+        //                     if (carts[x].cart_id === user.customer_id) {
+        //                         if (carts.cart_state == 'IN_PROGRESS') { // pickup saved cart
+        //                             this.setCartFromDB(carts);
+        //                         } else {
 
-                            }
-                        });
-                    }
-                }
+        //                         }
+        //                     }
+        //                 }
+        //             });
+        //         }
+        //     });
+        // }
+    }
 
-            }
-        });
+    setCartFromDB(cart: any) {
+        console.log(cart);
     }
 
     runReInit() {
         const user = this.authenticationService.currentUserSubject.value;
-        console.log(user.customer_id);
-        this.apiService.get('customers').subscribe((customers) => {
-            console.log(customers);
-            for (let x in customers) {
-                if (user && user.customer_id === customers[x].user) {
-                    this.currCustomer = customers[x];
-                    console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null || !this.currCustomer.carts.completed) {
-                        this.http.post<any>(`${config.api}/carts/`, { cart_id: user.customer_id }).subscribe((dbCarts) => {
-                            this.cart = dbCarts;
-                        })
-                    } else {
-                        this.apiService.get('carts').subscribe((dbCarts) => {
-                            for (let i in dbCarts) {
+        if (user) {
+            this.currCustomer = user;
+            this.apiService.getFromId('customers', user.customer_id).subscribe((customers) => {
+                if (customers.carts.length === 0) { //No current cart
+                    this.apiService.post(
+                        'carts',
+                        {
+                            cart_state: 'IN_PROGRESS',
+                            subtotal: 0,
+                            total: 0,
+                            products: [],
+                            cart_billing: null,
+                            customer: user.customer_id
 
-                            }
+                        }).subscribe((newCart) => {
+                            console.log(newCart);
                         });
-                    }
+                } else {
+                    this.apiService.get('carts').subscribe((carts) => {
+                        for (let x in carts) {
+                            if (carts[x].customer === user.customer_id) {
+                                if (carts[x].cart_state == 'IN_PROGRESS') { // pickup saved cart
+                                    this.setCartFromDB(carts);
+                                } else {
+                                    this.apiService.post(
+                                        'carts',
+                                        {
+                                            cart_state: 'IN_PROGRESS',
+                                            subtotal: 0,
+                                            total: 0,
+                                            products: [],
+                                            cart_billing: null,
+                                            customer: user.customer_id
+                
+                                        }).subscribe((newCart) => {
+                                            console.log(newCart);
+                                        });
+                                }
+                            }
+                        }
+                    });
                 }
-
-            }
-        });
+            });
+        }
     }
 
     addToCart(product: any) {
@@ -96,8 +120,22 @@ export class CartService {
         this.post();
     }
 
-    post() {
 
+
+    post() {
+        // this.apiService.post(
+        //     'carts',
+        //     {
+        //         cart_state: 'IN_PROGRESS',
+        //         cart_id: `${this.currCustomer.customer_id}`,
+        //         subtotal: this.subtotal(),
+        //         //total: 0,
+        //         products: JSON.stringify(this.cart)
+                
+        //     }
+        // ).subscribe((carts) => {
+        //     console.log(carts);
+        // })
     }
 
     increment(product: Product) {

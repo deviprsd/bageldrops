@@ -3,6 +3,7 @@ from enum import Enum
 from billing.models import Billing
 from customer.models import Customer
 from product.models import Product
+import uuid
 
 
 # enum for cart state
@@ -24,14 +25,15 @@ class Cart(CoreModel):
     cart_billing = models.OneToOneField(
         Billing,
         on_delete=models.CASCADE,
-        primary_key=True,
-        default=None,
+        null=True,
+        default=None
     )
     products = models.ManyToManyField(
         Product,
-        related_name='carts'
+        related_name='carts',
+        blank=True
     )
-    cart_id = models.CharField('ID', max_length=10, default="")
+    cart_id = models.CharField('Cart ID', max_length=36, default=uuid.uuid4, unique=True)
     subtotal = models.FloatField('Subtotal', default=0.0)
     total = models.FloatField('Total', default=0.0)
     customer = models.ForeignKey(
