@@ -163,7 +163,7 @@ ADMIN_REORDER = (
         'customer.Customer', 'product.Product', 'collection.Collection'
     ), 'label': 'Store'},
     {'app': 'cart', 'models': (
-        'cart.Cart', 'billing.Billing', 'coupon.Coupon', 'address.Address'
+        'cart.Cart', 'billing.Billing', 'coupon.Coupon', 'address.Address', 'tax.Tax'
     ), 'label': 'Checkout'},
 )
 

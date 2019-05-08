@@ -42,5 +42,6 @@ export class AuthenticationService {
     logout() {
       localStorage.removeItem('currentUser'); // remove user from local storage to log user out
       this.currentUserSubject.next(null);
+      window.location.reload();
     }
 }

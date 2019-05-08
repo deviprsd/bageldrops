@@ -5,4 +5,4 @@ from .models import Tax
 # registers tax rate with admin
 @admin.register(Tax)
 class TaxAdmin(admin.ModelAdmin):
-    list_display = ['tax_rate']
+    list_display = ('state', 'tax_rate')

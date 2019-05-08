@@ -7,7 +7,7 @@ from customer.models import Customer
 # has fields billing address, delivery address, card number, card security code,
 # and card expiration date
 class Billing(CoreModel):
-    billing_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_billing')
+    #billing_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_billing')
     delivery_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_delivery')
     card_number = models.CharField('Card Number', max_length=16)
     card_security_code = models.CharField('Card Security Code', max_length=16)

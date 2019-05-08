@@ -4,6 +4,7 @@ import { ApiService } from '../_services/api.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { config } from '../_models/config';
+import { Product } from '../_models/product';
 // { userInfo } from 'os';
 
 @Component({
@@ -12,7 +13,7 @@ import { config } from '../_models/config';
   styleUrls: ['./accounts.component.css']
 })
 export class AccountsComponent implements OnInit {
-  pastCarts = [];
+  completedCarts = [];
   editName = false;
   editNameForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -34,6 +35,7 @@ export class AccountsComponent implements OnInit {
   // User must be able to edit their profile
   // Just going to be able to edit their name
   ngOnInit() {
+    this.getCompletedCarts();
   }
 
   onSubmit() {
@@ -58,8 +60,26 @@ export class AccountsComponent implements OnInit {
       });
   }
 
-  products() {
-
+  getCompletedCarts(){
+    const user = this.authenticationService.currentUserValue;
+    this.apiService.get('carts').subscribe((carts) => {
+      for (let x in carts) {
+        if (carts[x].customer === user.customer_id && carts[x].cart_state === 'COMPLETED'){
+          const quantities = JSON.parse(carts[x].quantities)
+          for (let i in carts[x].products) {
+            carts[x].prod = []
+            this.apiService.getFromId('products', carts[x].products[i]).subscribe((product) => {
+                const p = new Product();
+                p.prod = product;
+                p.amount = quantities[p.prod.id];
+                carts[x].prod.push(p);
+            });
+          }
+          this.completedCarts.push(carts[x]);
+        }
+      }
+      console.log(this.completedCarts);
+    })
   }
 
 }

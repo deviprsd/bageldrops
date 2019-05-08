@@ -12,16 +12,17 @@ import { Product } from '../_models/product';
 })
 export class HomeComponent implements OnInit {
   products: Product;
-    
-  constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) { 
-    this.cartService.runReInit();
-    this.cartService.completed = false;
+
+  constructor(private titleService: Title, public apiService: ApiService, private cartService: CartService) {
+
   }
 
   ngOnInit() {
-      this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
-      this.apiService.get('products').subscribe((products) => {
-        this.products = products;
-      });
+    this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
+    this.apiService.get('products').subscribe((products) => {
+      this.products = products;
+    });
+    this.cartService.runReInit();
+    this.cartService.completed = false;
   }
 }

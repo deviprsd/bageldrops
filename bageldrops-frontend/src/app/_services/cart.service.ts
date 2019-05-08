@@ -14,41 +14,15 @@ export class CartService {
     public currCustomer;
     public billing;
     public activeCart;
+    public tax_state;
+    public taxes = {};
 
     constructor(public apiService: ApiService, public authenticationService: AuthenticationService) {
-        // const user = this.authenticationService.currentUserSubject.value;
-        // if (user) {
-        //     this.currCustomer = user;
-        //     this.apiService.getFromId('customers', user.customer_id).subscribe((customers) => {
-        //         console.log(customers.carts)
-        //         if (customers.carts == []) { //No current cart
-        //             this.apiService.post(
-        //                 'carts',
-        //                 {
-        //                     cart_state: 'IN_PROGRESS',
-        //                     subtotal: 0,
-        //                     total: 0,
-        //                     products: [],
-        //                     cart_billing: null
-
-        //                 }).subscribe((newCart) => {
-        //                     console.log(newCart);
-        //                 });
-        //         } else {
-        //             this.apiService.get('carts').subscribe((carts) => {
-        //                 for (let x in carts) {
-        //                     if (carts[x].cart_id === user.customer_id) {
-        //                         if (carts.cart_state == 'IN_PROGRESS') { // pickup saved cart
-        //                             this.setCartFromDB(carts);
-        //                         } else {
-
-        //                         }
-        //                     }
-        //                 }
-        //             });
-        //         }
-        //     });
-        // }
+       this.apiService.get('tax').subscribe((tax) => {
+           for (let i in tax) {
+                this.taxes[tax[i].state] = tax[i].tax_rate;
+           }
+       })
     }
 
     setCartFromDB(cart: any) {
@@ -201,7 +175,7 @@ export class CartService {
     }
 
     public tax() { //Fixed tax rate
-        return (parseFloat(this.subtotal()) * 0.05).toFixed(2);
+        return (parseFloat(this.subtotal()) * this.taxes[this.tax_state.toUpperCase()]).toFixed(2);
     }
 
     public total() { //Total including tax
@@ -212,8 +186,8 @@ export class CartService {
         return this.completed;
     }
 
-    public clearCart() { //Used after completing checkout
-        this.postCompleted();
+    public clearCart(bill_id) { //Used after completing checkout
+        this.postCompleted(bill_id);
         this.activeCart = null;
         this.cart = [];
         this.counter = 0;
@@ -222,7 +196,8 @@ export class CartService {
         //this.runReInit();
     }
 
-    public postCompleted(){
+    public postCompleted(bill_id){
+        if(bill_id === -1) return;
         const products = {}
         for (let x in this.cart) {
             products[this.cart[x].prod.id] = this.cart[x].amount;
@@ -234,9 +209,10 @@ export class CartService {
             {
                 cart_state: 'COMPLETED',
                 subtotal: this.subtotal(),
-                total: 0,
+                total: this.total(),
                 products: Object.keys(products),
-                quantities: JSON.stringify(products)
+                quantities: JSON.stringify(products),
+                cart_billing: bill_id
 
             }
         ).subscribe((carts) => {

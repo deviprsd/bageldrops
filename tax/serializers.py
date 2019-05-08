@@ -6,5 +6,5 @@ from .models import Tax
 class TaxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tax
-        fields = ['tax_rate']
+        fields = ('state', 'tax_rate')
         read_only_fields = fields
