@@ -49,15 +49,6 @@ export class CartService {
 
             }
         });
-
-        //console.log(this.currCustomer);
-        /* 
-                if (this.currCustomer.carts === null) {
-                    //this.apiService.post('carts', this.options).subscribe((carts) => {
-        
-                   // });
-                }
-                */
     }
 
     runReInit() {

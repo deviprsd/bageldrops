@@ -49,8 +49,8 @@ export class AccountsComponent implements OnInit {
     console.log(this.editNameForm.value.firstName);
     this.apiService.get('customers').subscribe((customers) => {
       for (let x in customers) {
-        console.log(user);
-        console.log(customers[x])
+        //console.log(user);
+        //console.log(customers[x])
         if (user.customer_id === customers[x].user) {
 
         }
@@ -65,18 +65,15 @@ export class AccountsComponent implements OnInit {
         if (customers[j].user === 2){
           var tempcustomer = customers[j];
           tempcustomer.carts = 12738614;
-          console.log(tempcustomer);
+          //console.log(tempcustomer);
 
-          this.apiService.patch('customers', tempcustomer.user - 1, tempcustomer).subscribe((data) => {
+          this.apiService.patch('customers', user.customer_id, {first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}`}).subscribe((data) => {
             console.log(data);
           });
         }
       }
     });
-    
-    //this.apiService.patch('customers', 2, { first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}` }).subscribe((data) => {
-    //console.log(data);
-    //});
+   
   }
 
   products() {
