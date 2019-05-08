@@ -20,7 +20,9 @@ export class AccountsComponent implements OnInit {
     email: new FormControl('', [Validators.required])
   });
   submitted = false;
-  billingInfo;
+  billingInfo: any;
+  billingAddress: any;
+  shippingAddress: any;
 
   public options = new HttpHeaders({
     'Content-Type': 'application/json'
@@ -29,9 +31,15 @@ export class AccountsComponent implements OnInit {
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, public http: HttpClient) {
     this.http.get<any>(`${config.api}/billing/${this.authenticationService.currentUserValue.customer_id}/`).subscribe((billing) => {
       this.billingInfo = billing;
-      //this.http.get<any>(`${config.api}/`)
-      console.log(billing);
+      this.http.get<any>(`${config.api}/addresses/${this.billingInfo.billing_address}`).subscribe((billingAddress) => {
+        this.billingAddress = billingAddress;
+      });
+      this.http.get<any>(`${config.api}/addresses/${this.billingInfo.delivery_address}`).subscribe((shippingAddress) => {
+        this.shippingAddress = shippingAddress;
+      });
+
     });
+    
   }
 
   //User must be able to edit their profile
@@ -58,7 +66,6 @@ export class AccountsComponent implements OnInit {
         this.authenticationService.currentUserValue.firstName = this.editNameForm.value.firstName;
         this.authenticationService.currentUserValue.lastName = this.editNameForm.value.lastName;
         this.authenticationService.currentUserValue.email = this.editNameForm.value.email;
-        console.log(data);
       });
   }
 
