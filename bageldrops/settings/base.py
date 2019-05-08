@@ -170,3 +170,8 @@ ADMIN_REORDER = (
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
 }
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, '../assets/media/')
+
+MEDIA_URL = '/media/'

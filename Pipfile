@@ -15,6 +15,7 @@ jsonfield = "*"
 markdown = "==3.0.1"
 djangorestframework-simplejwt = "*"
 django-modeladmin-reorder = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"

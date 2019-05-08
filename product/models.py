@@ -25,6 +25,7 @@ class Product(CoreModel):
     )
     stock = models.IntegerField('number of product in stock', default=1)
     limit = models.IntegerField('max number of product per order')
+    images = models.ImageField('Product Images', upload_to='products', default='products/no_prod_image.jpg')
 
     def __str__(self):
         return f'{self.prod_name}'
