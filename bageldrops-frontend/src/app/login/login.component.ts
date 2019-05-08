@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../_services/authentication.service';
 import { first } from 'rxjs/operators';
 import { CartService } from '../_services/cart.service';
+import { config } from '../_models/config';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private route: ActivatedRoute,
         private router: Router,
-        private cartService : CartService
+        private cartService: CartService,
+        private http: HttpClient
     ) { }
 
     ngOnInit() {
@@ -59,10 +62,10 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                 }
             );
-            this.cartService.runReInit();
-            this.http.get<any>(`${config.api}/customers`).subscribe((customers) => {
-                console.log(customers);
-            })
+        this.cartService.runReInit();
+        this.http.get<any>(`${config.api}/customers`).subscribe((customers) => {
+            console.log(customers);
+        })
         //Must push new cart out
     }
 }
