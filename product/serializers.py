@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Product
 
 
-# creates product fields
+# sets product fields for front end
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product

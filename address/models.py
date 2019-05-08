@@ -307,6 +307,7 @@ class CountryTypes(Enum):
     ZW = "Zimbabwe"
 
 
+# defines address model with fields street, city, state, and zip code
 class Address(CoreModel):
     street_one = models.CharField('Street', max_length=100, null=False, blank=False)
     street_two = models.CharField('Street 2', max_length=100, null=True, blank=True)

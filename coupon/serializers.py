@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Coupon
 
 
-# sets coupon fields
+# sets coupon fields to be used by front end
 class CouponSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coupon

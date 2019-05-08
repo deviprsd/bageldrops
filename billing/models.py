@@ -4,7 +4,7 @@ from address.models import Address
 
 # creates billing model
 # has fields billing address, delivery address, card number, card security code,
-# card expiration date
+# and card expiration date
 class Billing(CoreModel):
     billing_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_billing')
     delivery_address = models.OneToOneField(Address, on_delete=models.CASCADE, related_name='%(class)s_delivery')
