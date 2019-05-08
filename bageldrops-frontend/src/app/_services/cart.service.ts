@@ -34,10 +34,10 @@ export class CartService {
                 if (user && user.customer_id === customers[x].user) {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
-                    if (this.currCustomer.carts == null || !this.currCustomer.carts.completed) {
-                        this.http.post<any>(`${config.api}/carts/`, {cart_id: user.customer_id}).subscribe((dbCarts) => {
-                            this.cart = dbCarts;
-                        })
+                    if (this.currCustomer.carts == null) {
+                        if (this.currCustomer.carts.completed) {
+                            //this.apiService.patch('carts', 
+                        }
                     } else {
                         this.apiService.get('carts').subscribe((dbCarts) => {
                             for (let i in dbCarts) {
@@ -70,7 +70,7 @@ export class CartService {
                     this.currCustomer = customers[x];
                     console.log(this.currCustomer);
                     if (this.currCustomer.carts == null || !this.currCustomer.carts.completed) {
-                        this.http.post<any>(`${config.api}/carts/`, {cart_id: user.customer_id}).subscribe((dbCarts) => {
+                        this.http.post<any>(`${config.api}/carts/`, { cart_id: user.customer_id }).subscribe((dbCarts) => {
                             this.cart = dbCarts;
                         })
                     } else {

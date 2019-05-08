@@ -21,7 +21,7 @@ export class AccountsComponent implements OnInit {
 
   public options = new HttpHeaders({
     'Content-Type': 'application/json'
-  });
+  }); 
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, public http: HttpClient) {
     this.apiService.get('carts').subscribe((carts) => {
@@ -42,7 +42,7 @@ export class AccountsComponent implements OnInit {
   onSubmit() {
     const user = this.authenticationService.currentUserValue;
     this.submitted = true;
-
+    
     if (!this.editNameForm.valid) {
       return;
     }
@@ -55,7 +55,25 @@ export class AccountsComponent implements OnInit {
 
         }
       }
-    })
+    });
+    
+    // this.http.patch<any>('localhost:8000/api/v1/customers/1', {user: 1}).subscribe((data) => {
+    //   console.log(data);
+    // });
+    this.apiService.get('customers').subscribe((customers) => {
+      for (let j in customers){
+        if (customers[j].user === 2){
+          var tempcustomer = customers[j];
+          tempcustomer.carts = 12738614;
+          console.log(tempcustomer);
+
+          this.apiService.patch('customers', tempcustomer.user - 1, tempcustomer).subscribe((data) => {
+            console.log(data);
+          });
+        }
+      }
+    });
+    
     //this.apiService.patch('customers', 2, { first_name: `${this.editNameForm.value.firstName}`, last_name: `${this.editNameForm.value.lastName}` }).subscribe((data) => {
     //console.log(data);
     //});
