@@ -6,9 +6,11 @@
         <aside class="editname-wrapper m-left">
             <form *ngIf="editName" class="editname-form" [formGroup]="editNameForm">
                 <input type="text" id="first-name" aria-describedby="first-name" placeholder="First Name"
-                    formControlName="firstName" required>
+                    value="{{ authenticationService.currentUserValue.firstName }}" formControlName="firstName" required>
                 <input type="text" id="last-name" aria-describedby="last-name" placeholder="Last Name"
-                    formControlName="lastName" required>
+                    value="{{ authenticationService.currentUserValue.lasttName }}" formControlName="lastName" required>
+                <input type="text" id="email" aria-describedby="email" placeholder="Email"
+                    value="{{ authenticationService.currentUserValue.email }}" formControlName="email" required>
                 <button type="submit" (click)="onSubmit(confirm)" [disabled]="!editNameForm.valid"
                     class="site-btn">Accept</button>
                 <button type="submit" (click)="editName = false;" class="site-btn">Cancel</button>
