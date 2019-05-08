@@ -26,6 +26,7 @@ from cart import views as carts
 from collection import views as collection
 from customer import views as customers
 from tax import views as tax
+from address import views as addresses
 
 router_v1 = routers.DefaultRouter()
 router_v1.register(r'coupons', coupons.CouponViewSet)
@@ -35,6 +36,7 @@ router_v1.register(r'carts', carts.CartViewSet)
 router_v1.register(r'collections', collection.CollectionViewSet)
 router_v1.register(r'customers', customers.CustomerViewSet)
 router_v1.register(r'tax', tax.TaxViewSet)
+router_v1.register(r'addresses', addresses.AddressViewSet)
 
 urlpatterns = [
     path('', include('core.urls')),

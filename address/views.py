@@ -3,6 +3,6 @@ from .serializers import AddressSerializer
 from .models import Address
 
 
-class BillingViewSet(viewsets.ModelViewSet):
+class AddressViewSet(viewsets.ModelViewSet):
     queryset = Address.objects.all()
     serializer_class = AddressSerializer

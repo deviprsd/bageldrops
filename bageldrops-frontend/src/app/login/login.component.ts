@@ -53,13 +53,16 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    //this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.error = error;
                 }
             );
             this.cartService.runReInit();
+            this.http.get<any>(`${config.api}/customers`).subscribe((customers) => {
+                console.log(customers);
+            })
         //Must push new cart out
     }
 }

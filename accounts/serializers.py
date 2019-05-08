@@ -21,6 +21,8 @@ class UserSerializer(serializers.ModelSerializer):
         )
         user.groups.add(Group.objects.get(name='Customers'))
         customer = Customer(user=user)
+        print(user)
+        print(customer.user)
         customer.save()
         return user
 
