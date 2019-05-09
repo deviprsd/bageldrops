@@ -25,21 +25,23 @@ export class CartService {
        })
     }
 
-    setCartFromDB(cart: any) {
+    setCartFromDB(cart: any) { //Pulls in user's preexisting cart
         this.activeCart = cart;
-        const quantities = JSON.parse(this.activeCart.quantities)
+        this.cart = [];
         
+        const quantities = JSON.parse(this.activeCart.quantities)
+        let counter = 0;
         for (let x in cart.products) {
             this.apiService.getFromId('products', cart.products[x]).subscribe((product) => {
                 const p = new Product();
                 p.prod = product;
                 p.amount = quantities[p.prod.id];
-                this.cart.push(p)
+                this.cart.push(p) //Adds item to local cart
             });
         }
     }
 
-    runReInit() {
+    runReInit() { //Used for getting or creating cart after a user signs in
         if(this.activeCart) {
             return;
         }
@@ -60,18 +62,18 @@ export class CartService {
 
                         }).subscribe((newCart) => {
                             console.log(newCart);
-                            this.setCartFromDB(newCart);
+                            this.setCartFromDB(newCart); //Pickup saved cart
                         });
                 } else {
                     this.apiService.get('carts').subscribe((carts) => {
                         for (let x in carts) {
                             if (carts[x].customer === user.customer_id) {
-                                if (carts[x].cart_state == 'IN_PROGRESS') { // pickup saved cart
+                                if (carts[x].cart_state == 'IN_PROGRESS') { //Pickup saved cart
                                     this.setCartFromDB(carts[x]);
                                 }
                             }
                         }
-                        if(!this.activeCart) {
+                        if(!this.activeCart) { //Creates a new cart
                             this.apiService.post(
                                 'carts',
                                 {
@@ -111,7 +113,7 @@ export class CartService {
         this.post();
     }
 
-    post() {
+    post() { //posts the cart to the database so items in it are not lost
         const products = {}
         for (let x in this.cart) {
             products[this.cart[x].prod.id] = this.cart[x].amount;
@@ -192,11 +194,9 @@ export class CartService {
         this.cart = [];
         this.counter = 0;
         this.discount = 0;
-        //this.completed = false;
-        //this.runReInit();
     }
 
-    public postCompleted(bill_id){
+    public postCompleted(bill_id){ //Updates the user's cart once they checkout, this cart cannot be accessed except for on the profile page where it is read only
         if(bill_id === -1) return;
         const products = {}
         for (let x in this.cart) {
@@ -219,9 +219,4 @@ export class CartService {
             console.log(carts);
         })
     }
-
-    public sendCartToServer() {
-        //this.apiService
-    }
-
 }

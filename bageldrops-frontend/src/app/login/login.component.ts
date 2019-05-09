@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.cartService.runReInit();
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

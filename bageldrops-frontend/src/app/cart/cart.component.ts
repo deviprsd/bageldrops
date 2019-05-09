@@ -30,7 +30,6 @@ export class CartComponent implements OnInit {
     });
     this.apiService.get('coupons').subscribe((coupons) => {
       this.coupons = coupons;
-      //console.log(coupons);
     });
   }
   getCart() {
@@ -44,7 +43,7 @@ export class CartComponent implements OnInit {
       this.apiService.getFromId('collections', x.collection).subscribe((collection) => {
         if (!collection.is_active) return;
         for (let j in collection.products) {
-          for (let k in this.cartService.cart) {
+          for (let k in this.cartService.cart) { //Coupon and product filtering
             if (collection.products[j] === this.cartService.cart[k].prod.prod_id) {
               applied = true;
               alert("Coupon applied!");
@@ -56,10 +55,8 @@ export class CartComponent implements OnInit {
         }
       })
     }
-    if (applied){
-      alert("Coupon applied!");
-    } else {
-      alert("Coupon not valid!");
+    if (!applied){
+      alert("Coupon invalid!");
     }
 
   }

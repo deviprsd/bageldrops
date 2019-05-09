@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('BagelDrops | Bagel Standard of Coolness');
     this.apiService.get('products').subscribe((products) => {
-      this.products = products;
+      this.products = products; //Gets products to display on home page
     });
     this.cartService.runReInit();
     this.cartService.completed = false;

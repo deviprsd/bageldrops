@@ -12,7 +12,7 @@ bageldrops> cd bageldrops-frontend
 bageldrops-frontend> npm install
 bageldrops> cd ..
 bageldrops> pipenv shell
-bageldrops> python manage.py makemigrations coupons products billing carts collections customers tax addresses
+bageldrops> python manage.py makemigrations coupon product billing cart collection customer tax address
 bageldrops> python manage.py migrate
 bageldrops> python manage.py createsuperuser
 bageldrops> python manage.py runserver

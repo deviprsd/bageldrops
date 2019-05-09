@@ -15,7 +15,7 @@ import { Product } from '../_models/product';
 export class AccountsComponent implements OnInit {
   completedCarts = [];
   editName = false;
-  editNameForm = new FormGroup({
+  editNameForm = new FormGroup({ 
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required])
@@ -32,10 +32,8 @@ export class AccountsComponent implements OnInit {
     public http: HttpClient
   ) {}
 
-  // User must be able to edit their profile
-  // Just going to be able to edit their name
   ngOnInit() {
-    this.getCompletedCarts();
+    this.getCompletedCarts(); //Pulls the user's completed checkouts
   }
 
   onSubmit() {
@@ -46,7 +44,7 @@ export class AccountsComponent implements OnInit {
       return;
     }
 
-    this.apiService.patch(
+    this.apiService.patch( //Submits new user values
       'customers',
       user.customer_id,
       {
@@ -64,7 +62,7 @@ export class AccountsComponent implements OnInit {
     const user = this.authenticationService.currentUserValue;
     this.apiService.get('carts').subscribe((carts) => {
       for (let x in carts) {
-        if (carts[x].customer === user.customer_id && carts[x].cart_state === 'COMPLETED'){
+        if (carts[x].customer === user.customer_id && carts[x].cart_state === 'COMPLETED'){ //Cart is completed, so it will be displayed
           const quantities = JSON.parse(carts[x].quantities)
           for (let i in carts[x].products) {
             carts[x].prod = []

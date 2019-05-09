@@ -24,9 +24,7 @@ export class CheckoutComponent implements OnInit {
     expiration: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
     ccv: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(3)])
   });
-  //returnUrl: string;
   submitted = false;
-  //error: string;
   closeResult: string;
 
   constructor(public authenticationService: AuthenticationService, public apiService: ApiService, private cartService: CartService, private modalService: NgbModal) { }
@@ -36,7 +34,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    //console.log(this.checkoutForm.value);
   }
 
   open(content) { //Opening modal for checkout completion
@@ -48,7 +45,6 @@ export class CheckoutComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', centered: true }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       if (`${result}` == 'Confirm click') { //Order is completed
-        //figure out how to actually access the address
         if(this.authenticationService.currentUserValue) {
           this.apiService.post('addresses', {
             street_one: this.checkoutForm.value.addr1,
@@ -57,7 +53,7 @@ export class CheckoutComponent implements OnInit {
             state: this.checkoutForm.value.state,
             zip: this.checkoutForm.value.zip
           }).subscribe((data) => {
-            this.apiService.post('billing', {
+            this.apiService.post('billing', { //Posts new billing info
               delivery_address: data.id,
               card_number: this.checkoutForm.value.cardNum,
               card_security_code: this.checkoutForm.value.ccv,
