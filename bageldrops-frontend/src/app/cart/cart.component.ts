@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
+    let applied = false;
     let x;
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
       this.apiService.getFromId('collections', x.collection).subscribe((collection) => {
@@ -45,19 +46,20 @@ export class CartComponent implements OnInit {
         for (let j in collection.products) {
           for (let k in this.cartService.cart) {
             if (collection.products[j] === this.cartService.cart[k].prod.prod_id) {
-              console.log(collection);
-              console.log(collection.products[j] + " " + this.cartService.cart[k].prod.prod_id);
+              applied = true;
+              alert("Coupon applied!");
               this.cartService.cart[k].couponValid = true;
               this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
-            } else {
-              this.cartService.cart[k].couponValid = false;
-              this.cartService.cart[k].discount = 0;
+
             }
           }
         }
       })
+    }
+    if (applied){
+      alert("Coupon applied!");
     } else {
-      console.log('coupons do not match');
+      alert("Coupon not valid!");
     }
 
   }

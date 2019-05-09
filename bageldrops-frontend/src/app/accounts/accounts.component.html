@@ -1,5 +1,5 @@
 <section class="accounts-section spad">
-    <div class="container">
+    <div class="container m-auto">
         <h3>Profile</h3>
         <h1 *ngIf="authenticationService.currentUserValue">{{ authenticationService.fullName }}</h1>
         <button (click)="editName = true;" class="site-btn">Edit Name</button>
