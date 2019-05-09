@@ -22,6 +22,7 @@ From here you can log in to the admin page at 127.0.0.1:8000/admin to add produc
 Before your first user is created you must create a new group called "Customers" under groups on the admin page.
 "Customers" should be given the permissions to add and change address, billing, and cart.
 "Customers" should also be give permissions to change customer.
+All desired tax percentages must also be initialized under Taxs
 
 New coupons can be created under the Coupons section. Make sure the collection for the coupon to active with the ctive status button.
 

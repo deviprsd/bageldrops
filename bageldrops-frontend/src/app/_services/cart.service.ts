@@ -15,20 +15,21 @@ export class CartService {
     public billing;
     public activeCart;
     public tax_state;
-    public taxes = {};
+
+    taxes = {};
 
     constructor(public apiService: ApiService, public authenticationService: AuthenticationService) {
-       this.apiService.get('tax').subscribe((tax) => {
-           for (let i in tax) {
+        this.apiService.get('tax').subscribe((tax) => {
+            for (let i in tax) {
                 this.taxes[tax[i].state] = tax[i].tax_rate;
-           }
-       })
+            }
+        })
     }
 
     setCartFromDB(cart: any) { //Pulls in user's preexisting cart
         this.activeCart = cart;
         this.cart = [];
-        
+
         const quantities = JSON.parse(this.activeCart.quantities)
         let counter = 0;
         for (let x in cart.products) {
@@ -42,7 +43,7 @@ export class CartService {
     }
 
     runReInit() { //Used for getting or creating cart after a user signs in
-        if(this.activeCart) {
+        if (this.activeCart) {
             return;
         }
         const user = this.authenticationService.currentUserSubject.value;
@@ -73,7 +74,7 @@ export class CartService {
                                 }
                             }
                         }
-                        if(!this.activeCart) { //Creates a new cart
+                        if (!this.activeCart) { //Creates a new cart
                             this.apiService.post(
                                 'carts',
                                 {
@@ -83,7 +84,7 @@ export class CartService {
                                     products: [],
                                     cart_billing: null,
                                     customer: user.customer_id
-        
+
                                 }).subscribe((newCart) => {
                                     this.setCartFromDB(newCart);
                                 });
@@ -196,8 +197,8 @@ export class CartService {
         this.discount = 0;
     }
 
-    public postCompleted(bill_id){ //Updates the user's cart once they checkout, this cart cannot be accessed except for on the profile page where it is read only
-        if(bill_id === -1) return;
+    public postCompleted(bill_id) { //Updates the user's cart once they checkout, this cart cannot be accessed except for on the profile page where it is read only
+        if (bill_id === -1) return;
         const products = {}
         for (let x in this.cart) {
             products[this.cart[x].prod.id] = this.cart[x].amount;

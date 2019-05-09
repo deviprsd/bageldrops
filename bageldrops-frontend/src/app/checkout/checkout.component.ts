@@ -38,7 +38,6 @@ export class CheckoutComponent implements OnInit {
 
   open(content) { //Opening modal for checkout completion
     this.apiService.get('billings').subscribe((billings) => {
-      console.log(billings);
     })
     console.log(content);
     this.cartService.tax_state = this.checkoutForm.get('state').value;
