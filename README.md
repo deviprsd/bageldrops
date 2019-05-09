@@ -12,11 +12,22 @@ bageldrops> cd bageldrops-frontend
 bageldrops-frontend> npm install
 bageldrops> cd ..
 bageldrops> pipenv shell
+bageldrops> python manage.py makemigrations coupons products billing carts collections customers tax addresses
+bageldrops> python manage.py migrate
+bageldrops> python manage.py createsuperuser
+bageldrops> python manage.py runserver
 (bageldrops) ... bageldrops> python manage.py runserver
 ```
+From here you can log in to the admin page at 127.0.0.1:8000/admin to add products, coupons, and collections.
+Before your first user is created you must create a new group called "Customers" under groups on the admin page.
+"Customers" should be given the permissions to add and change address, billing, and cart.
+"Customers" should also be give permissions to change customer.
+
+New coupons can be created under the Coupons section. Make sure the collection for the coupon to active with the ctive status button.
+
 In another **terminal/cmd** run
 ```console
 bageldrops> cd bageldrops-frontend
 bageldrops-frontend> ng serve
 ```
-Then open browser and go to 127.0.0.1:8000 or 127.0.0.1:4200
+Then open browser and go to 127.0.0.1:4200
