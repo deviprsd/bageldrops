@@ -37,7 +37,6 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit() {
-    let applied = false;
     let x;
     if ((x = this.couponsMatch(this.coupons, this.couponForm.get('coupon').value))) {
       this.apiService.getFromId('collections', x.collection).subscribe((collection) => {
@@ -45,8 +44,6 @@ export class CartComponent implements OnInit {
         for (let j in collection.products) {
           for (let k in this.cartService.cart) { //Coupon and product filtering
             if (collection.products[j] === this.cartService.cart[k].prod.prod_id) {
-              applied = true;
-              alert("Coupon applied!");
               this.cartService.cart[k].couponValid = true;
               this.cartService.cart[k].discount = (x.discount * 1.0) / 100.0;
 
@@ -55,10 +52,6 @@ export class CartComponent implements OnInit {
         }
       })
     }
-    if (!applied){
-      alert("Coupon invalid!");
-    }
-
   }
 
   couponsMatch(apiCoupons: Array<any>, coupon: string) { //Coupon validation
