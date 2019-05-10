@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.conf import settings
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
-from tax.models import d, Tax
-
 
 
 def index(request):
