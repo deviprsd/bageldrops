@@ -17,7 +17,6 @@ bageldrops> python manage.py migrate
 bageldrops> python manage.py createsuperuser
 bageldrops> python manage.py loaddata tax
 bageldrops> python manage.py runserver
-(bageldrops) ... bageldrops> python manage.py runserver
 ```
 From here you can log in to the admin page at 127.0.0.1:8000/admin to add products, coupons, and collections.
 Before your first user is created you must create a new group called "Customers" under groups on the admin page.
